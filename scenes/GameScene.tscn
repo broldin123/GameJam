@@ -1,14 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://dlb3nbb7k6p1i"]
+[gd_scene load_steps=16 format=3 uid="uid://dlb3nbb7k6p1i"]
 
 [ext_resource type="Script" path="res://scripts/GameScene.gd" id="1_jyku5"]
-[ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://myTheme.tres" id="2_c2duk"]
+[ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://UI/myTheme.tres" id="2_c2duk"]
 [ext_resource type="Texture2D" uid="uid://byg1lr85m6v0c" path="res://sprites/scaleBeam.png" id="2_gqdq3"]
 [ext_resource type="Texture2D" uid="uid://byvodqw0jt5vq" path="res://sprites/graveyard.jpg" id="2_slu6m"]
 [ext_resource type="Texture2D" uid="uid://5cbp1tr0dntk" path="res://sprites/scaleCenter.png" id="3_8l8p0"]
 [ext_resource type="Texture2D" uid="uid://buk33vgcta34w" path="res://sprites/scalePlate.png" id="4_f0ft4"]
 [ext_resource type="Texture2D" uid="uid://di47qsbsm26bc" path="res://sprites/house.png" id="5_rjpfm"]
-[ext_resource type="AudioStream" uid="uid://bbqlsf30lv1dn" path="res://music/Kevin MacLeod   Pop Goes the Weasel.mp3" id="6_0ydp6"]
 [ext_resource type="AudioStream" uid="uid://d0w7uh45q834f" path="res://music/Kevin Macleod  Killers.mp3" id="7_vbukn"]
+[ext_resource type="AudioStream" uid="uid://rocxymnpqfkq" path="res://music/Kevin MacLeod [Official] - The Show Must Be Go! - incompetech.com.mp3" id="8_jlg8a"]
+[ext_resource type="Texture2D" uid="uid://8vg20au7sr2m" path="res://sprites/wifeChat.png" id="10_7iv1a"]
+[ext_resource type="Texture2D" uid="uid://cww4x3xttvdgg" path="res://sprites/blankBubble.png" id="11_jfon1"]
+[ext_resource type="Script" path="res://scenes/btnBeginDay.gd" id="12_ifv8h"]
 
 [sub_resource type="Animation" id="Animation_g5li3"]
 resource_name = "RightDownToUp"
@@ -163,6 +166,7 @@ offset_bottom = 361.0
 theme = ExtResource("2_c2duk")
 
 [node name="btnMainMenu" type="Button" parent="Scale/Control"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = -27.0
 offset_right = 139.0
@@ -173,6 +177,7 @@ theme = ExtResource("2_c2duk")
 text = "Menu"
 
 [node name="btnEndScreen" type="Button" parent="Scale/Control"]
+layout_mode = 0
 offset_left = 847.0
 offset_top = -31.0
 offset_right = 1140.0
@@ -180,7 +185,21 @@ offset_bottom = 25.0
 size_flags_horizontal = 8
 text = "End Screen"
 
-[node name="btnStartHome" type="Button" parent="Scale/Control"]
+[node name="HouseMusic" type="AudioStreamPlayer2D" parent="Scale/Control"]
+stream = ExtResource("8_jlg8a")
+volume_db = -30.0
+
+[node name="WorkMusic" type="AudioStreamPlayer2D" parent="Scale/Control"]
+stream = ExtResource("7_vbukn")
+
+[node name="DebugButtons" type="Control" parent="Scale/Control"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="btnStartHome" type="Button" parent="Scale/Control/DebugButtons"]
+layout_mode = 2
 offset_left = 628.0
 offset_top = -613.0
 offset_right = 942.0
@@ -189,7 +208,8 @@ size_flags_horizontal = 8
 text = "Debug:
 Start Home"
 
-[node name="btnStartWork" type="Button" parent="Scale/Control"]
+[node name="btnStartWork" type="Button" parent="Scale/Control/DebugButtons"]
+layout_mode = 2
 offset_left = 234.0
 offset_top = -615.0
 offset_right = 565.0
@@ -199,18 +219,47 @@ theme_override_font_sizes/font_size = 0
 text = "Debug:
 Start Work"
 
-[node name="HouseMusic" type="AudioStreamPlayer2D" parent="Scale/Control"]
-stream = ExtResource("6_0ydp6")
-autoplay = true
+[node name="WifeChat" type="Control" parent="Scale/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="WorkMusic" type="AudioStreamPlayer2D" parent="Scale/Control"]
-stream = ExtResource("7_vbukn")
+[node name="WifeChat" type="Sprite2D" parent="Scale/Control/WifeChat"]
+position = Vector2(581.25, -289.75)
+scale = Vector2(0.5509, 0.549242)
+texture = ExtResource("10_7iv1a")
+
+[node name="BlankBubble" type="Sprite2D" parent="Scale/Control/WifeChat"]
+position = Vector2(950, -467)
+scale = Vector2(1, 4.21429)
+texture = ExtResource("11_jfon1")
+
+[node name="btnBeginDay" type="Button" parent="Scale/Control/WifeChat"]
+visible = false
+layout_mode = 0
+offset_left = 848.0
+offset_top = -86.0
+offset_right = 1130.0
+offset_bottom = -30.0
+text = " Begin Day "
+script = ExtResource("12_ifv8h")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Scale/Control/WifeChat"]
+layout_mode = 0
+offset_left = 844.0
+offset_top = -533.0
+offset_right = 1142.0
+offset_bottom = -297.0
+text = "Patella
+(Wifey)"
 
 [connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_btn_main_menu_pressed"]
 [connection signal="pressed" from="Scale/Control/btnEndScreen" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Scale/Control/btnEndScreen" to="." method="_on_btn_end_screen_pressed"]
-[connection signal="pressed" from="Scale/Control/btnStartHome" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Scale/Control/btnStartHome" to="." method="_on_btn_start_home_pressed"]
-[connection signal="pressed" from="Scale/Control/btnStartWork" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Scale/Control/btnStartWork" to="." method="_on_btn_start_work_pressed"]
+[connection signal="gui_input" from="Scale/Control/DebugButtons" to="." method="_on_debug_buttons_gui_input"]
+[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartHome" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartHome" to="." method="_on_btn_start_home_pressed"]
+[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartWork" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartWork" to="." method="_on_btn_start_work_pressed"]
+[connection signal="pressed" from="Scale/Control/WifeChat/btnBeginDay" to="." method="_on_btn_begin_day_pressed"]

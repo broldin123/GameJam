@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ba1igphko8d04"]
 
-[ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://myTheme.tres" id="1_t357j"]
+[ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://UI/myTheme.tres" id="1_t357j"]
 [ext_resource type="Script" path="res://scripts/EndScene.gd" id="1_wjs67"]
 [ext_resource type="AudioStream" uid="uid://uje8ijntoqlc" path="res://music/Kevin MacLeod_ Alien Restaurant.mp3" id="2_e73qv"]
 [ext_resource type="Texture2D" uid="uid://qx4ojd2c0o6t" path="res://sprites/skeleton_that_is_a_fighter_and_a_dad_he_is_holding_a_baby_in_one_hand_the_other_hand_holder_a_sword_1903656758.png" id="3_1yfi0"]
