@@ -100,67 +100,69 @@ _data = {
 position = Vector2(4, 616)
 script = ExtResource("1_jyku5")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme = ExtResource("2_c2duk")
-
-[node name="Graveyard" type="Sprite2D" parent="Control"]
+[node name="Graveyard" type="Sprite2D" parent="."]
 modulate = Color(0.188235, 0.137255, 0.12549, 0.627451)
 position = Vector2(575, -287)
 scale = Vector2(0.600781, 1.13281)
 texture = ExtResource("2_slu6m")
 
-[node name="Scale" type="Sprite2D" parent="Control"]
+[node name="Scale" type="Sprite2D" parent="."]
 position = Vector2(599, -321)
 
-[node name="ScaleBeam" type="Sprite2D" parent="Control/Scale"]
+[node name="ScaleBeam" type="Sprite2D" parent="Scale"]
 position = Vector2(-1, -158)
-rotation = -1.74533
+rotation = -1.39626
 scale = Vector2(1.18231, 2.60758)
 texture = ExtResource("2_gqdq3")
 
-[node name="AttachPointRight" type="Node2D" parent="Control/Scale/ScaleBeam"]
+[node name="AttachPointRight" type="Node2D" parent="Scale/ScaleBeam"]
 position = Vector2(4.72643, -122.403)
 rotation = -1.76302
 scale = Vector2(0.982055, 1.51073)
 
-[node name="AttachPointLeft" type="Node2D" parent="Control/Scale/ScaleBeam"]
+[node name="AttachPointLeft" type="Node2D" parent="Scale/ScaleBeam"]
 position = Vector2(5.16099, 121.474)
 rotation = -1.76302
 scale = Vector2(0.982055, 1.51073)
 
-[node name="ScaleCenter" type="Sprite2D" parent="Control/Scale"]
+[node name="ScaleCenter" type="Sprite2D" parent="Scale"]
 position = Vector2(3, 38)
 scale = Vector2(1.99791, 1.53905)
 texture = ExtResource("3_8l8p0")
 
-[node name="ScalePlateRight" type="Sprite2D" parent="Control/Scale"]
-position = Vector2(303, -17)
+[node name="ScalePlateRight" type="Sprite2D" parent="Scale"]
+position = Vector2(303, 85)
 rotation = 0.0102167
 scale = Vector2(2.92343, 1.93315)
 texture = ExtResource("4_f0ft4")
 
-[node name="House" type="Sprite2D" parent="Control/Scale/ScalePlateRight"]
+[node name="House" type="Sprite2D" parent="Scale/ScalePlateRight"]
 position = Vector2(-3.37152, 7.29456)
 rotation = -0.0154496
 scale = Vector2(0.342087, 0.517275)
 skew = 0.00869358
 texture = ExtResource("5_rjpfm")
 
-[node name="ScalePlateLeft" type="Sprite2D" parent="Control/Scale"]
-position = Vector2(-309, 85)
+[node name="ScalePlateLeft" type="Sprite2D" parent="Scale"]
+position = Vector2(-309, -17)
 scale = Vector2(3.17839, 1.77781)
 texture = ExtResource("4_f0ft4")
 
-[node name="ScaleAnim" type="AnimationPlayer" parent="Control/Scale"]
+[node name="ScaleAnim" type="AnimationPlayer" parent="Scale"]
 libraries = {
 "": SubResource("AnimationLibrary_pr0dm")
 }
 
-[node name="btnMainMenu" type="Button" parent="Control"]
+[node name="Control" type="Control" parent="Scale"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -599.0
+offset_top = 321.0
+offset_right = -559.0
+offset_bottom = 361.0
+theme = ExtResource("2_c2duk")
+
+[node name="btnMainMenu" type="Button" parent="Scale/Control"]
 offset_left = 8.0
 offset_top = -27.0
 offset_right = 139.0
@@ -170,7 +172,7 @@ size_flags_vertical = 0
 theme = ExtResource("2_c2duk")
 text = "Menu"
 
-[node name="btnEndScreen" type="Button" parent="Control"]
+[node name="btnEndScreen" type="Button" parent="Scale/Control"]
 offset_left = 847.0
 offset_top = -31.0
 offset_right = 1140.0
@@ -178,7 +180,7 @@ offset_bottom = 25.0
 size_flags_horizontal = 8
 text = "End Screen"
 
-[node name="btnStartHome" type="Button" parent="Control"]
+[node name="btnStartHome" type="Button" parent="Scale/Control"]
 offset_left = 628.0
 offset_top = -613.0
 offset_right = 942.0
@@ -187,7 +189,7 @@ size_flags_horizontal = 8
 text = "Debug:
 Start Home"
 
-[node name="btnStartWork" type="Button" parent="Control"]
+[node name="btnStartWork" type="Button" parent="Scale/Control"]
 offset_left = 234.0
 offset_top = -615.0
 offset_right = 565.0
@@ -197,18 +199,18 @@ theme_override_font_sizes/font_size = 0
 text = "Debug:
 Start Work"
 
-[node name="HouseMusic" type="AudioStreamPlayer2D" parent="Control"]
+[node name="HouseMusic" type="AudioStreamPlayer2D" parent="Scale/Control"]
 stream = ExtResource("6_0ydp6")
 autoplay = true
 
-[node name="WorkMusic" type="AudioStreamPlayer2D" parent="Control"]
+[node name="WorkMusic" type="AudioStreamPlayer2D" parent="Scale/Control"]
 stream = ExtResource("7_vbukn")
 
-[connection signal="pressed" from="Control/btnMainMenu" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Control/btnMainMenu" to="." method="_on_btn_main_menu_pressed"]
-[connection signal="pressed" from="Control/btnEndScreen" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Control/btnEndScreen" to="." method="_on_btn_end_screen_pressed"]
-[connection signal="pressed" from="Control/btnStartHome" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Control/btnStartHome" to="." method="_on_btn_start_home_pressed"]
-[connection signal="pressed" from="Control/btnStartWork" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Control/btnStartWork" to="." method="_on_btn_start_work_pressed"]
+[connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_btn_main_menu_pressed"]
+[connection signal="pressed" from="Scale/Control/btnEndScreen" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Scale/Control/btnEndScreen" to="." method="_on_btn_end_screen_pressed"]
+[connection signal="pressed" from="Scale/Control/btnStartHome" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Scale/Control/btnStartHome" to="." method="_on_btn_start_home_pressed"]
+[connection signal="pressed" from="Scale/Control/btnStartWork" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Scale/Control/btnStartWork" to="." method="_on_btn_start_work_pressed"]
