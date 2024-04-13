@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://ba1igphko8d04"]
+
+[ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://UI/myTheme.tres" id="1_t357j"]
+[ext_resource type="Script" path="res://scripts/EndScene.gd" id="1_wjs67"]
+[ext_resource type="AudioStream" uid="uid://uje8ijntoqlc" path="res://music/Kevin MacLeod_ Alien Restaurant.mp3" id="2_e73qv"]
+[ext_resource type="Texture2D" uid="uid://qx4ojd2c0o6t" path="res://sprites/skeleton_that_is_a_fighter_and_a_dad_he_is_holding_a_baby_in_one_hand_the_other_hand_holder_a_sword_1903656758.png" id="3_1yfi0"]
+[ext_resource type="Texture2D" uid="uid://byvodqw0jt5vq" path="res://sprites/graveyard.jpg" id="3_karc5"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_t357j")
+script = ExtResource("1_wjs67")
+
+[node name="Graveyard" type="Sprite2D" parent="."]
+modulate = Color(0.188235, 0.137255, 0.12549, 0.627451)
+position = Vector2(563, 333)
+scale = Vector2(0.600781, 1.13281)
+texture = ExtResource("3_karc5")
+
+[node name="btnMainMenu" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = -63.0
+offset_right = 87.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Return to Main Menu"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_e73qv")
+volume_db = 2.0
+autoplay = true
+
+[node name="SkeletonThatIsAFighterAndADadHeIsHoldingABabyInOneHandTheOtherHandHolderASword1903656758" type="Sprite2D" parent="."]
+position = Vector2(585, 281)
+scale = Vector2(0.769531, 0.730469)
+texture = ExtResource("3_1yfi0")
+
+[connection signal="pressed" from="btnMainMenu" to="." method="_on_btn_main_menu_pressed"]

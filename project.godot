@@ -11,17 +11,24 @@ config_version=5
 [application]
 
 config/name="GameJam"
-run/main_scene="res://TitleScene.tscn"
+run/main_scene="res://scenes/TitleScene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://sprites/icon.svg"
 
 [autoload]
 
 global="*res://scripts/global.gd"
+MyGlobals="*res://scripts/global.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [display]
 
-window/stretch/scale=4.0
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [input]
 
@@ -30,6 +37,15 @@ attack={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"echo":false,"script":null)
 ]
 }
+toggleDebugButtons={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":96,"key_label":0,"unicode":96,"echo":false,"script":null)
+]
+}
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://dialogues/introWifeChat.dialogue")
 
 [rendering]
 

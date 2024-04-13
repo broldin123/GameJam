@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://bejtsvts3n8nt"
+path="res://.godot/imported/introWifeChat.dialogue-a607b6dea4dbd698932e47262b1d6e57.tres"
+
+[deps]
+
+source_file="res://dialogues/introWifeChat.dialogue"
+dest_files=["res://.godot/imported/introWifeChat.dialogue-a607b6dea4dbd698932e47262b1d6e57.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://dup64oetgksvo"]
+
+[ext_resource type="Script" path="res://scripts/TitleScene.gd" id="1_bb82w"]
+[ext_resource type="Texture2D" uid="uid://byvodqw0jt5vq" path="res://sprites/graveyard.jpg" id="2_2kvja"]
+[ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://UI/myTheme.tres" id="2_itm7e"]
+[ext_resource type="Texture2D" uid="uid://cr26jcdxku6dc" path="res://sprites/skeleton_that_is_a_fighter_and_a_dad_he_is_holding_a_baby_in_one_hand_the_other_hand_is_holding_a_sw_2679041012.png" id="3_rfvj3"]
+[ext_resource type="Texture2D" uid="uid://chic4qg81ph5i" path="res://sprites/Title.png" id="4_pubu0"]
+[ext_resource type="AudioStream" uid="uid://uje8ijntoqlc" path="res://music/Kevin MacLeod_ Alien Restaurant.mp3" id="5_qk8ak"]
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_bb82w")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("2_itm7e")
+
+[node name="Graveyard" type="Sprite2D" parent="Control"]
+modulate = Color(0.188235, 0.137255, 0.12549, 0.627451)
+position = Vector2(574.75, 330.75)
+scale = Vector2(0.600781, 1.13281)
+texture = ExtResource("2_2kvja")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="btnPlay" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 369.0
+offset_top = 516.0
+offset_right = 753.0
+offset_bottom = 572.0
+size_flags_horizontal = 4
+text = "        Play        "
+
+[node name="btnQuit" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 470.0
+offset_top = 580.0
+offset_right = 681.0
+offset_bottom = 636.0
+text = "   Quit   "
+
+[node name="SkeletonThatIsAFighterAndADadHeIsHoldingABabyInOneHandTheOtherHandIsHoldingASw2679041012" type="Sprite2D" parent="Control"]
+position = Vector2(574.5, 327.75)
+scale = Vector2(0.669922, 0.702148)
+texture = ExtResource("3_rfvj3")
+
+[node name="Title" type="Sprite2D" parent="Control"]
+position = Vector2(589, 85)
+texture = ExtResource("4_pubu0")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control"]
+stream = ExtResource("5_qk8ak")
+volume_db = 2.0
+autoplay = true
+
+[connection signal="pressed" from="Control/btnPlay" to="." method="_on_btn_play_pressed"]
+[connection signal="pressed" from="Control/btnQuit" to="." method="_on_btn_quit_pressed"]
