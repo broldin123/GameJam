@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cssdlulhei1cu"]
+[gd_scene load_steps=40 format=3 uid="uid://cssdlulhei1cu"]
 
 [ext_resource type="Script" path="res://scripts/GameScene.gd" id="1_jyku5"]
 [ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://UI/myTheme.tres" id="2_c2duk"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://scenes/PortalToHome.gd" id="17_w15gs"]
 [ext_resource type="Texture2D" uid="uid://uksulftnugw4" path="res://sprites/tilesets/floors/flooring.png" id="18_hus3x"]
 [ext_resource type="PackedScene" uid="uid://h80n4mbesiy6" path="res://scenes/player.tscn" id="19_i34oj"]
+[ext_resource type="FontFile" uid="uid://bt2qgdlcvnhlx" path="res://UI/BoneyardBrawl-rgBdy.ttf" id="19_mkrso"]
 [ext_resource type="PackedScene" uid="uid://bvmxlem0gfsp6" path="res://enemy.tscn" id="20_waj8o"]
 [ext_resource type="Texture2D" uid="uid://dbj2g57gwd7ec" path="res://sprites/tilesets/ezgif-5-8dd9f9d424.jpg" id="21_snx83"]
 [ext_resource type="Texture2D" uid="uid://10ptdddshelw" path="res://sprites/characters/pdTP5o.png" id="22_s3kbp"]
@@ -1019,7 +1020,6 @@ position = Vector2(-46.5645, -53.4365)
 scale = Vector2(1.2585, 2.24996)
 
 [node name="enemy" parent="Scale/ScalePlateLeft/quest_cryptDefense" instance=ExtResource("20_waj8o")]
-visible = false
 position = Vector2(78.3415, -51.6084)
 scale = Vector2(0.943874, 1.68747)
 
@@ -1048,6 +1048,15 @@ script = ExtResource("23_nyvb8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" groups=["Portal"]]
 shape = SubResource("CapsuleShape2D_52qje")
+
+[node name="txtHealth" type="RichTextLabel" parent="Scale/ScalePlateLeft"]
+offset_left = -70.0
+offset_top = 93.0
+offset_right = 71.0
+offset_bottom = 118.0
+theme_override_fonts/normal_font = ExtResource("19_mkrso")
+bbcode_enabled = true
+text = "Health: 100 / 100"
 
 [node name="animScaleUpDown" type="AnimationPlayer" parent="Scale"]
 libraries = {

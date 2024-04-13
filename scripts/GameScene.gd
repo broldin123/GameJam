@@ -44,10 +44,15 @@ func trySpawnDogPoop():
 	$Scale/ScalePlateRight/House/Skeledog.get_parent().add_child(newProgressMeter)
 	newProgressMeter.global_position = $Scale/ScalePlateRight/House/Skeledog.global_position
 
+func updateHealthDisplay():
+	#$Scale/ScalePlateLeft/txtHealth.text = "[center]Health: %s / %s[/center]" % MyGlobals.playerCurHealth % MyGlobals.playerMaxHealth
+	return
+
 #shows the button after we finish the wife chat
 #called every frame
 func _process(delta):
 	timeUntilNextDogPoop -= delta
+	updateHealthDisplay()
 	trySpawnDogPoop()
 	if MyGlobals.wifeChatFinished:
 		$Scale/Control/WifeChat/btnBeginDay.visible = true
