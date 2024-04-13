@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlb3nbb7k6p1i"]
+
+[ext_resource type="Script" path="res://GameScene.gd" id="1_8ahbh"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(4, 616)
+script = ExtResource("1_8ahbh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="btnMainMenu" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Menu"
+
+[node name="btnEndScreen" type="Button" parent="."]
+offset_left = 1049.0
+offset_right = 1143.0
+offset_bottom = 31.0
+size_flags_horizontal = 8
+text = "End Screen"
+
+[connection signal="pressed" from="btnMainMenu" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="btnMainMenu" to="." method="_on_btn_main_menu_pressed"]
+[connection signal="pressed" from="btnEndScreen" to="." method="_on_btn_end_screen_pressed"]
+[connection signal="pressed" from="btnEndScreen" to="." method="_on_button_pressed"]
