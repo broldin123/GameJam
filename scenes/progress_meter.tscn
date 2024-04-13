@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4xlodhdrakyp"]
+
+[ext_resource type="Script" path="res://scripts/ProgressMeter.gd" id="1_aodjh"]
+[ext_resource type="Texture2D" uid="uid://cddh8mxxb0ics" path="res://sprites/progress.png" id="2_1s53i"]
+[ext_resource type="Texture2D" uid="uid://boalt16gvevru" path="res://sprites/fail.png" id="3_tbcsa"]
+[ext_resource type="FontFile" uid="uid://bt2qgdlcvnhlx" path="res://UI/BoneyardBrawl-rgBdy.ttf" id="4_tb1dq"]
+[ext_resource type="Texture2D" uid="uid://dw7darqpwr6lm" path="res://sprites/success.png" id="4_xl2c7"]
+[ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://UI/myTheme.tres" id="5_ts2te"]
+
+[node name="ProgressMeter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aodjh")
+
+[node name="imgProgress" type="Sprite2D" parent="."]
+position = Vector2(-0.669296, 3.2229)
+scale = Vector2(0.147907, 0.122563)
+texture = ExtResource("2_1s53i")
+
+[node name="imgFail" type="Sprite2D" parent="."]
+position = Vector2(0.330704, 3.2229)
+scale = Vector2(0.168916, 0.160933)
+texture = ExtResource("3_tbcsa")
+
+[node name="imgSuccess" type="Sprite2D" parent="."]
+position = Vector2(-1, 4)
+scale = Vector2(0.200793, 0.199803)
+texture = ExtResource("4_xl2c7")
+
+[node name="txtProgress" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -15.6693
+offset_top = -6.77711
+offset_right = 18.3307
+offset_bottom = 20.2229
+theme_override_fonts/normal_font = ExtResource("4_tb1dq")
+theme_override_font_sizes/normal_font_size = 17
+bbcode_enabled = true
+text = "[center]10%[/center]"
+
+[node name="txtTitle" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -81.0
+offset_top = -43.0
+offset_right = 82.0
+offset_bottom = -9.0
+theme = ExtResource("5_ts2te")
+theme_override_fonts/normal_font = ExtResource("4_tb1dq")
+theme_override_font_sizes/normal_font_size = 21
+bbcode_enabled = true
+text = "[center]Clean up Poop[/center]"
+
+[node name="txtTimeLeft" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -168.0
+offset_top = 26.0
+offset_right = 173.0
+offset_bottom = 60.0
+theme = ExtResource("5_ts2te")
+theme_override_fonts/normal_font = ExtResource("4_tb1dq")
+theme_override_font_sizes/normal_font_size = 21
+bbcode_enabled = true
+text = "[center]10s[/center]"

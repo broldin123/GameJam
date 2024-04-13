@@ -1,5 +1,8 @@
 extends Node2D
 
+var timeUntilNextDogPoop = 4
+var questPrefab = load("res://scenes/progress_meter.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("Starting game scene")
@@ -30,8 +33,21 @@ func _on_btn_begin_day_pressed():
 	$Scale/Control/WifeChat.visible = false
 	$Scale/animScaleUpDown.play("RightDownToUp")
 	
+func trySpawnDogPoop():
+	if( timeUntilNextDogPoop > 0):
+		return
+	timeUntilNextDogPoop = randf_range(7, 20)
+	var newProgressMeter = questPrefab.instantiate()
+	print("poop %s spawned!" % MyGlobals.poopNum)
+	newProgressMeter._setup("Clean Poop %s" % MyGlobals.poopNum, 2, 10)
+	MyGlobals.poopNum += 1
+	$Scale/ScalePlateRight/House/Skeledog.get_parent().add_child(newProgressMeter)
+	newProgressMeter.global_position = $Scale/ScalePlateRight/House/Skeledog.global_position
+
 #shows the button after we finish the wife chat
 #called every frame
-func _process(_delta):
+func _process(delta):
+	timeUntilNextDogPoop -= delta
+	trySpawnDogPoop()
 	if MyGlobals.wifeChatFinished:
 		$Scale/Control/WifeChat/btnBeginDay.visible = true

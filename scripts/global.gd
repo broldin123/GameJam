@@ -5,3 +5,5 @@ var questStatus_DontBurnTheOmlette = "None"
 var questStatus_DefendTheCrypt = "None"
 var wifeChatFinished = false
 
+var questResults = [""]
+var poopNum = 1
