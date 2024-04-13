@@ -188,6 +188,7 @@ text = "End Screen"
 [node name="HouseMusic" type="AudioStreamPlayer2D" parent="Scale/Control"]
 stream = ExtResource("8_jlg8a")
 volume_db = -30.0
+autoplay = true
 
 [node name="WorkMusic" type="AudioStreamPlayer2D" parent="Scale/Control"]
 stream = ExtResource("7_vbukn")
