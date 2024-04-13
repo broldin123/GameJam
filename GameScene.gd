@@ -10,10 +10,14 @@ func _ready():
 func _process(delta):
 	pass
 
-
-func _on_btn_end_screen_pressed():
-	get_tree().change_scene_to_file("res://EndScene.tscn")
-
-
 func _on_btn_main_menu_pressed():
 	get_tree().change_scene_to_file("res://TitleScene.tscn")
+
+func _on_btn_start_home_pressed():
+	$Scale/ScaleAnim.play("RightDownToUp")
+
+func _on_btn_start_work_pressed():
+	$Scale/ScaleAnim.play("RightUpToDown")
+	
+func _on_btn_end_screen_pressed():
+	get_tree().change_scene_to_file("res://EndScene.tscn")
