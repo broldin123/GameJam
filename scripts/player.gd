@@ -15,6 +15,10 @@ var player_dodge = false
 const speed = 150
 var current_dir = "none"
 
+var questPrefab = load("res://scenes/progress_meter.tscn")
+var stayAliveTenSecondsQuest = null
+
+
 func _ready():
 	$AnimatedSprite2D.play("side_idle")
 
@@ -30,6 +34,18 @@ func _physics_process(delta):
 		print("player has been killed")
 		self.queue_free()
 		
+
+func spawn_player_lose_quest(_delta):
+	pass
+	#if(stayAliveTenSecondsQuest != null):
+	#		
+	#stayAliveTenSecondsQuest = questPrefab.instantiate()
+	#print("poop %s spawned!" % MyGlobals.poopNum)
+	#newProgressMeter._setup("Clean Poop %s" % MyGlobals.poopNum, 2, 10)
+	#MyGlobals.poopNum += 1
+	#$Scale/ScalePlateRight/House/Skeledog.get_parent().add_child(newProgressMeter)
+	#newProgressMeter.global_position = $Scale/ScalePlateRight/House/Skeledog.global_position
+	# = 
 
 func player_movement(_delta):
 	var _dir = current_dir
