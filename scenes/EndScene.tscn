@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ba1igphko8d04"]
+[gd_scene load_steps=7 format=3 uid="uid://ba1igphko8d04"]
 
 [ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://UI/myTheme.tres" id="1_t357j"]
 [ext_resource type="Script" path="res://scripts/EndScene.gd" id="1_wjs67"]
 [ext_resource type="AudioStream" uid="uid://uje8ijntoqlc" path="res://music/Kevin MacLeod_ Alien Restaurant.mp3" id="2_e73qv"]
 [ext_resource type="Texture2D" uid="uid://qx4ojd2c0o6t" path="res://sprites/skeleton_that_is_a_fighter_and_a_dad_he_is_holding_a_baby_in_one_hand_the_other_hand_holder_a_sword_1903656758.png" id="3_1yfi0"]
 [ext_resource type="Texture2D" uid="uid://byvodqw0jt5vq" path="res://sprites/graveyard.jpg" id="3_karc5"]
+[ext_resource type="FontFile" uid="uid://bt2qgdlcvnhlx" path="res://UI/BoneyardBrawl-rgBdy.ttf" id="6_ibgwo"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -43,8 +44,27 @@ volume_db = 2.0
 autoplay = true
 
 [node name="SkeletonThatIsAFighterAndADadHeIsHoldingABabyInOneHandTheOtherHandHolderASword1903656758" type="Sprite2D" parent="."]
-position = Vector2(585, 281)
+position = Vector2(903, 300)
 scale = Vector2(0.769531, 0.730469)
 texture = ExtResource("3_1yfi0")
+
+[node name="txtResultsTitle" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 31.0
+offset_right = 615.0
+offset_bottom = 120.0
+text = "Quest Results:"
+
+[node name="txtResultsInfo" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 115.0
+offset_right = 661.0
+offset_bottom = 524.0
+theme_override_fonts/normal_font = ExtResource("6_ibgwo")
+theme_override_font_sizes/normal_font_size = 40
+text = "Quest Passed: X
+Quest Failed: X"
 
 [connection signal="pressed" from="btnMainMenu" to="." method="_on_btn_main_menu_pressed"]

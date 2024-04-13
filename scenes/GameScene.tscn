@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cssdlulhei1cu"]
+[gd_scene load_steps=19 format=3 uid="uid://cssdlulhei1cu"]
 
 [ext_resource type="Script" path="res://scripts/GameScene.gd" id="1_jyku5"]
 [ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://UI/myTheme.tres" id="2_c2duk"]
@@ -6,12 +6,35 @@
 [ext_resource type="Texture2D" uid="uid://byvodqw0jt5vq" path="res://sprites/graveyard.jpg" id="2_slu6m"]
 [ext_resource type="Texture2D" uid="uid://5cbp1tr0dntk" path="res://sprites/scaleCenter.png" id="3_8l8p0"]
 [ext_resource type="Texture2D" uid="uid://buk33vgcta34w" path="res://sprites/scalePlate.png" id="4_f0ft4"]
-[ext_resource type="Texture2D" uid="uid://di47qsbsm26bc" path="res://sprites/house.png" id="5_rjpfm"]
+[ext_resource type="Texture2D" uid="uid://cdstc170pejfo" path="res://sprites/greyHouse.png" id="6_l7q2r"]
+[ext_resource type="Texture2D" uid="uid://6monscsdvgxl" path="res://sprites/skeledog.png" id="7_br60w"]
 [ext_resource type="AudioStream" uid="uid://d0w7uh45q834f" path="res://music/Kevin Macleod  Killers.mp3" id="7_vbukn"]
 [ext_resource type="AudioStream" uid="uid://rocxymnpqfkq" path="res://music/Kevin MacLeod [Official] - The Show Must Be Go! - incompetech.com.mp3" id="8_jlg8a"]
 [ext_resource type="Texture2D" uid="uid://8vg20au7sr2m" path="res://sprites/wifeChat.png" id="10_7iv1a"]
 [ext_resource type="Texture2D" uid="uid://cww4x3xttvdgg" path="res://sprites/blankBubble.png" id="11_jfon1"]
 [ext_resource type="Script" path="res://scenes/btnBeginDay.gd" id="12_ifv8h"]
+
+[sub_resource type="Animation" id="Animation_r6irv"]
+resource_name = "skeleDog walk cycle"
+length = 35.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 5, 7, 8.5, 12, 15.8, 20.9, 21.8, 25.6, 30, 35.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-132, 107), Vector2(218, 145), Vector2(-216, 129), Vector2(-111, 77), Vector2(-111, 77), Vector2(191, 77), Vector2(-13, 77), Vector2(-24, -18), Vector2(-24, -18), Vector2(198, -18), Vector2(198, -18)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lvwot"]
+_data = {
+"skeleDog walk cycle": SubResource("Animation_r6irv")
+}
 
 [sub_resource type="Animation" id="Animation_g5li3"]
 resource_name = "RightDownToUp"
@@ -114,7 +137,7 @@ position = Vector2(599, -321)
 
 [node name="ScaleBeam" type="Sprite2D" parent="Scale"]
 position = Vector2(-1, -158)
-rotation = -1.39626
+rotation = -1.74533
 scale = Vector2(1.18231, 2.60758)
 texture = ExtResource("2_gqdq3")
 
@@ -134,24 +157,52 @@ scale = Vector2(1.99791, 1.53905)
 texture = ExtResource("3_8l8p0")
 
 [node name="ScalePlateRight" type="Sprite2D" parent="Scale"]
-position = Vector2(303, 85)
+position = Vector2(303, -15)
 rotation = 0.0102167
 scale = Vector2(2.92343, 1.93315)
 texture = ExtResource("4_f0ft4")
 
 [node name="House" type="Sprite2D" parent="Scale/ScalePlateRight"]
-position = Vector2(-3.37152, 7.29456)
+self_modulate = Color(0.784314, 0.784314, 0.784314, 1)
+position = Vector2(1.35071, -2.60745)
 rotation = -0.0154496
 scale = Vector2(0.342087, 0.517275)
 skew = 0.00869358
-texture = ExtResource("5_rjpfm")
+texture = ExtResource("6_l7q2r")
+
+[node name="Skeledog" type="Sprite2D" parent="Scale/ScalePlateRight/House"]
+position = Vector2(198, -18)
+scale = Vector2(0.0289355, 0.0275833)
+texture = ExtResource("7_br60w")
+
+[node name="animSkeleDog" type="AnimationPlayer" parent="Scale/ScalePlateRight/House/Skeledog"]
+libraries = {
+"": SubResource("AnimationLibrary_lvwot")
+}
+speed_scale = 0.5
+
+[node name="quest_omelette" type="Control" parent="Scale/ScalePlateRight/House"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 198.0
+offset_top = 64.0
+offset_right = 238.0
+offset_bottom = 104.0
 
 [node name="ScalePlateLeft" type="Sprite2D" parent="Scale"]
-position = Vector2(-309, -17)
+position = Vector2(-309, 85)
 scale = Vector2(3.17839, 1.77781)
 texture = ExtResource("4_f0ft4")
 
-[node name="ScaleAnim" type="AnimationPlayer" parent="Scale"]
+[node name="quest_cryptDefense" type="Control" parent="Scale/ScalePlateLeft"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -3.14625
+offset_top = 83.2485
+offset_right = 36.8538
+offset_bottom = 123.248
+
+[node name="animScaleUpDown" type="AnimationPlayer" parent="Scale"]
 libraries = {
 "": SubResource("AnimationLibrary_pr0dm")
 }
@@ -221,6 +272,7 @@ text = "Debug:
 Start Work"
 
 [node name="WifeChat" type="Control" parent="Scale/Control"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -254,13 +306,19 @@ offset_bottom = -297.0
 text = "Patella
 (Wifey)"
 
-[connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_btn_main_menu_pressed"]
+[node name="Quest Positions" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Scale/Control/btnEndScreen" to="." method="_on_btn_end_screen_pressed"]
+[connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_btn_main_menu_pressed"]
 [connection signal="pressed" from="Scale/Control/btnEndScreen" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Scale/Control/btnEndScreen" to="." method="_on_btn_end_screen_pressed"]
 [connection signal="gui_input" from="Scale/Control/DebugButtons" to="." method="_on_debug_buttons_gui_input"]
-[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartHome" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Scale/Control/DebugButtons/btnStartHome" to="." method="_on_btn_start_home_pressed"]
+[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartHome" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Scale/Control/DebugButtons/btnStartWork" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Scale/Control/DebugButtons/btnStartWork" to="." method="_on_btn_start_work_pressed"]
 [connection signal="pressed" from="Scale/Control/WifeChat/btnBeginDay" to="." method="_on_btn_begin_day_pressed"]

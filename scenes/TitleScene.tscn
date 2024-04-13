@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dup64oetgksvo"]
+[gd_scene load_steps=9 format=3 uid="uid://dup64oetgksvo"]
 
 [ext_resource type="Script" path="res://scripts/TitleScene.gd" id="1_bb82w"]
 [ext_resource type="Texture2D" uid="uid://byvodqw0jt5vq" path="res://sprites/graveyard.jpg" id="2_2kvja"]
 [ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://UI/myTheme.tres" id="2_itm7e"]
 [ext_resource type="Texture2D" uid="uid://cr26jcdxku6dc" path="res://sprites/skeleton_that_is_a_fighter_and_a_dad_he_is_holding_a_baby_in_one_hand_the_other_hand_is_holding_a_sw_2679041012.png" id="3_rfvj3"]
-[ext_resource type="Texture2D" uid="uid://chic4qg81ph5i" path="res://sprites/Title.png" id="4_pubu0"]
 [ext_resource type="AudioStream" uid="uid://uje8ijntoqlc" path="res://music/Kevin MacLeod_ Alien Restaurant.mp3" id="5_qk8ak"]
+[ext_resource type="FontFile" uid="uid://bt2qgdlcvnhlx" path="res://UI/BoneyardBrawl-rgBdy.ttf" id="5_x35dt"]
+[ext_resource type="Texture2D" uid="uid://cww4x3xttvdgg" path="res://sprites/blankBubble.png" id="6_fxdi0"]
+[ext_resource type="FontFile" uid="uid://rld8dojby6p0" path="res://UI/Warbones-BWgeB.ttf" id="7_oqeik"]
 
 [node name="TitleScreen" type="Node2D"]
 script = ExtResource("1_bb82w")
@@ -23,48 +25,116 @@ position = Vector2(574.75, 330.75)
 scale = Vector2(0.600781, 1.13281)
 texture = ExtResource("2_2kvja")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control"]
-layout_mode = 0
+[node name="Info" type="Control" parent="Control"]
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-alignment = 1
-
-[node name="btnPlay" type="Button" parent="Control"]
+[node name="txtInfo" type="RichTextLabel" parent="Control/Info"]
 layout_mode = 0
-offset_left = 369.0
-offset_top = 516.0
-offset_right = 753.0
-offset_bottom = 572.0
-size_flags_horizontal = 4
-text = "        Play        "
+offset_left = 366.0
+offset_top = 53.0
+offset_right = 664.0
+offset_bottom = 117.0
+scale = Vector2(1.57077, 1.68455)
+theme_override_fonts/normal_font = ExtResource("7_oqeik")
+text = "Game Info"
 
-[node name="btnQuit" type="Button" parent="Control"]
+[node name="txtInfoDesc" type="RichTextLabel" parent="Control/Info"]
 layout_mode = 0
-offset_left = 470.0
-offset_top = 580.0
-offset_right = 681.0
-offset_bottom = 636.0
+offset_left = 141.0
+offset_top = 158.0
+offset_right = 715.0
+offset_bottom = 430.0
+scale = Vector2(1.57077, 1.68455)
+theme_override_fonts/normal_font = ExtResource("5_x35dt")
+theme_override_font_sizes/normal_font_size = 20
+text = "Controls:
+   E - Dodge
+   Spacebar - Attack
+   F - Progress quest (when nearby)
+
+Description:
+   You're a skele-dad who is constantly summoned to defend a crypt from a rude adventurer. Attempt to achieve a work-life balance by completeing tasks at home AND at work.
+
+Credits:
+Combat: https://www.youtube.com/watch?v=24hXJnwRim0&ab_channel=DevWorm
+Title menu: https://youtu.be/vsKxB66_ngw?si=VnpUbRkUPDMKgWDc
+ChatGPT images: https://dezgo.com/txt2img
+Dialogue: https://www.youtube.com/watch?v=Q8iuaHwzxWY&ab_channel=DevWorm
+He does collision detection at 19:20
+At 7:10 he explains global scripts
+Godot buttons:  https://www.youtube.com/watch?v=w7SqfjLG1Uk&ab_channel=HonsHonCentral
+Wife Art: https://pbs.twimg.com/media/E35UzkBUUAAAy6N?format=png&name=4096x4096
+"
+
+[node name="btnBack" type="Button" parent="Control/Info"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 43.0
+offset_right = 241.0
+offset_bottom = 99.0
+text = "Back"
+
+[node name="MainMenu" type="Control" parent="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="imgTitleBG" type="Sprite2D" parent="Control/MainMenu"]
+position = Vector2(580.5, 84)
+scale = Vector2(1.92969, 1.92857)
+texture = ExtResource("6_fxdi0")
+
+[node name="txtTitle" type="RichTextLabel" parent="Control/MainMenu"]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 40.0
+offset_right = 703.0
+offset_bottom = 104.0
+scale = Vector2(1.57077, 1.68455)
+theme_override_fonts/normal_font = ExtResource("7_oqeik")
+text = "Graveyard Shift"
+
+[node name="btnHowToPlay" type="Button" parent="Control/MainMenu"]
+layout_mode = 0
+offset_left = 685.0
+offset_top = 276.0
+offset_right = 1069.0
+offset_bottom = 332.0
+size_flags_horizontal = 4
+text = "How to PLay"
+
+[node name="btnPlay" type="Button" parent="Control/MainMenu"]
+layout_mode = 0
+offset_left = 735.0
+offset_top = 352.0
+offset_right = 1039.0
+offset_bottom = 408.0
+size_flags_horizontal = 4
+text = "      Play     "
+
+[node name="btnQuit" type="Button" parent="Control/MainMenu"]
+layout_mode = 0
+offset_left = 776.0
+offset_top = 424.0
+offset_right = 987.0
+offset_bottom = 480.0
 text = "   Quit   "
 
-[node name="SkeletonThatIsAFighterAndADadHeIsHoldingABabyInOneHandTheOtherHandIsHoldingASw2679041012" type="Sprite2D" parent="Control"]
-position = Vector2(574.5, 327.75)
-scale = Vector2(0.669922, 0.702148)
+[node name="imgMain" type="Sprite2D" parent="Control/MainMenu"]
+position = Vector2(387, 385)
+scale = Vector2(0.866211, 0.880371)
 texture = ExtResource("3_rfvj3")
-
-[node name="Title" type="Sprite2D" parent="Control"]
-position = Vector2(589, 85)
-texture = ExtResource("4_pubu0")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control"]
 stream = ExtResource("5_qk8ak")
 volume_db = 2.0
 autoplay = true
 
-[connection signal="pressed" from="Control/btnPlay" to="." method="_on_btn_play_pressed"]
-[connection signal="pressed" from="Control/btnQuit" to="." method="_on_btn_quit_pressed"]
+[connection signal="pressed" from="Control/Info/btnBack" to="." method="_on_btn_back_pressed"]
+[connection signal="pressed" from="Control/MainMenu/btnHowToPlay" to="." method="_on_btn_how_to_play_pressed"]
+[connection signal="pressed" from="Control/MainMenu/btnPlay" to="." method="_on_btn_play_pressed"]
+[connection signal="pressed" from="Control/MainMenu/btnQuit" to="." method="_on_btn_quit_pressed"]
