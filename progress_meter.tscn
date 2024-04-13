@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4xlodhdrakyp"]
+
+[ext_resource type="Script" path="res://ProgressMeter.gd" id="1_6ry3g"]
+[ext_resource type="Texture2D" uid="uid://cddh8mxxb0ics" path="res://sprites/progress.png" id="2_u8f0q"]
+[ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://UI/myTheme.tres" id="3_f52yn"]
+[ext_resource type="Texture2D" uid="uid://boalt16gvevru" path="res://sprites/fail.png" id="3_weugn"]
+[ext_resource type="FontFile" uid="uid://bt2qgdlcvnhlx" path="res://UI/BoneyardBrawl-rgBdy.ttf" id="4_8l2fc"]
+
+[node name="ProgressMeter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ry3g")
+
+[node name="imgProgress" type="Sprite2D" parent="."]
+position = Vector2(84, 49)
+scale = Vector2(0.147907, 0.122563)
+texture = ExtResource("2_u8f0q")
+
+[node name="imgFail" type="Sprite2D" parent="."]
+position = Vector2(85, 49)
+scale = Vector2(0.168916, 0.160933)
+texture = ExtResource("3_weugn")
+
+[node name="txtProgress" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 39.0
+offset_right = 103.0
+offset_bottom = 66.0
+theme_override_fonts/normal_font = ExtResource("4_8l2fc")
+theme_override_font_sizes/normal_font_size = 17
+bbcode_enabled = true
+text = "[center]10%[/center]"
+
+[node name="txtTitle" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 166.0
+offset_bottom = 36.0
+theme = ExtResource("3_f52yn")
+theme_override_fonts/normal_font = ExtResource("4_8l2fc")
+theme_override_font_sizes/normal_font_size = 21
+bbcode_enabled = true
+text = "[center]Clean up Poop[/center]"
+
+[node name="txtTimeLeft" type="RichTextLabel" parent="."]
+offset_left = 2.0
+offset_top = 71.0
+offset_right = 165.0
+offset_bottom = 105.0
+theme = ExtResource("3_f52yn")
+theme_override_fonts/normal_font = ExtResource("4_8l2fc")
+theme_override_font_sizes/normal_font_size = 21
+bbcode_enabled = true
+text = "[center]10s[/center]"
