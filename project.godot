@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="GameJam"
-run/main_scene="res://TitleScene.tscn"
+run/main_scene="res://scenes/TitleScene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://sprites/icon.svg"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [rendering]
 

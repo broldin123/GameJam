@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bbqlsf30lv1dn"
+path="res://.godot/imported/Kevin MacLeod   Pop Goes the Weasel.mp3-76bd6fddb8019cfe4f546f73859405a2.mp3str"
+
+[deps]
+
+source_file="res://music/Kevin MacLeod   Pop Goes the Weasel.mp3"
+dest_files=["res://.godot/imported/Kevin MacLeod   Pop Goes the Weasel.mp3-76bd6fddb8019cfe4f546f73859405a2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
