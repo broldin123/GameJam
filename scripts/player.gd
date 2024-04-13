@@ -2,21 +2,27 @@ extends CharacterBody2D
 
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
+var player_dodge_cooldown = true
 var health = 100
+var totalHealth = 100
 var player_alive = true
 
 var attack_ip = false
+var dodge_ip = false
 
-const speed = 100
+var player_dodge = false
+
+const speed = 150
 var current_dir = "none"
 
 func _ready():
-	$AnimatedSprite2D.play("front_idle")
+	$AnimatedSprite2D.play("side_idle")
 
 func _physics_process(delta):
 	player_movement(delta)
 	enemy_attack()
 	attack()
+	#dodge()
 	
 	if health <= 0:
 		player_alive = false #goes back to family world
@@ -25,7 +31,9 @@ func _physics_process(delta):
 		self.queue_free()
 		
 
-func player_movement(delta):
+func player_movement(_delta):
+	var _dir = current_dir
+	var anim = $AnimatedSprite2D
 	if Input.is_action_pressed("ui_right"):
 		current_dir = "right"
 		play_anim(1)
@@ -36,16 +44,18 @@ func player_movement(delta):
 		play_anim(1)
 		velocity.x = -speed
 		velocity.y = 0
-	elif Input.is_action_pressed("ui_down"):
-		current_dir = "down"
-		play_anim(1)
-		velocity.y = speed
-		velocity.x = 0
-	elif Input.is_action_pressed("ui_up"):
-		current_dir = "up"
-		play_anim(1)
-		velocity.y = -speed
-		velocity.x = 0
+	#elif Input.is_action_pressed("ui_down"):
+	#	current_dir = "down"
+	#	play_anim(1)
+	#	velocity.y = speed
+	#	velocity.x = 0
+	#elif Input.is_action_pressed("ui_up"):
+	#	current_dir = "up"
+	#	play_anim(1)
+	#	velocity.y = -speed
+	#	velocity.x = 0
+	elif global.player_dodge == true:
+			anim.play("dodge_attack")
 	else:
 		play_anim(0)
 		velocity.x = 0
@@ -97,13 +107,50 @@ func _on_player_hitbox_body_exited(body):
 	if body.has_method("enemy"):
 		enemy_inattack_range = false
 		
+#func dodge():
+#	var dir = current_dir
+	
+#	if Input.is_action_just_pressed("dodge") and global.player_dodge == false:
+#		global.player_dodge = true
+#		dodge_ip = true
+#		if dir == "right":
+#			$AnimatedSprite2D.flip_h = false
+#			$AnimatedSprite2D.play("dodge_attack")
+#			player_dodge_cooldown = false
+#			$dodgetimer.start()
+#		if dir == "left":
+#			$AnimatedSprite2D.flip_h = true
+#			$AnimatedSprite2D.play("dodge_attack")
+#			global.player_dodge = true
+#			player_dodge_cooldown = false
+#			$dodgetimer.start()
+		
+		
+	
 
 func enemy_attack():
-	if enemy_inattack_range and enemy_attack_cooldown == true:
+	var anim = $AnimatedSprite2D
+	var dir = current_dir
+	if enemy_inattack_range and enemy_attack_cooldown == true and global.player_dodge == false:
 		health = health - 1
 		enemy_attack_cooldown = false
 		$attack_cooldown.start()
-		print("player - 1 health")
+		print("skeleton health = ", health, " out of ", totalHealth)
+	elif Input.is_action_just_pressed("dodge") and global.player_dodge == false:
+		if dir == "right":
+			$AnimatedSprite2D.flip_h = false
+			anim.play("dodge_attack")
+			global.player_dodge = true
+			player_dodge_cooldown = false
+			$dodgetimer.start()
+			print("player dodged!")
+		if dir == "left":
+			$AnimatedSprite2D.flip_h = true
+			anim.play("dodge_attack")
+			global.player_dodge = true
+			player_dodge_cooldown = false
+			$dodgetimer.start()
+			print("player dodged!")
 
 
 
@@ -138,3 +185,15 @@ func _on_deal_attack_timer_timeout():
 	$deal_attack_timer.stop()
 	global.player_current_attack = false
 	attack_ip = false # Replace with function body.
+
+
+func _on_dodgetimer_timeout():
+	$dodgetimer.stop()
+	global.player_dodge = false
+	
+
+
+
+
+func _on_area_2d_body_entered(body):
+	translate(Vector2(500, 0))
