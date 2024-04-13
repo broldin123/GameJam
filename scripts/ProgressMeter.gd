@@ -16,6 +16,8 @@ var questTitle = "Quest-Title"
 
 var isActive = false
 
+var allowProgress = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#_setup("Do it!", 3, 2)
@@ -30,6 +32,7 @@ func _setup(title_, progressTimeReq_, timeLimit_):
 	$imgSuccess.visible = false
 	$imgFail.visible = false
 	$imgProgress.visible = true
+	$imgProgressInRange.visible = false
 	$txtTitle.text = "[center]%s[/center]" % title_
 	pass
 
@@ -38,7 +41,7 @@ func _process(delta):
 	if( !isActive ):
 		return
 		
-	if Input.is_action_pressed("progressQuest"):
+	if Input.is_action_pressed("progressQuest") && allowProgress:
 		timeProgressed += delta
 		
 	timeUntilFailed -= delta
@@ -59,6 +62,7 @@ func _process(delta):
 		$imgFail.visible = false
 		$imgProgress.visible = false
 		$imgSuccess.visible = true
+		$imgProgressInRange.visible = false
 		await get_tree().create_timer(3).timeout
 		$".".queue_free()
 	
@@ -71,7 +75,36 @@ func _process(delta):
 		$imgFail.visible = true
 		$imgProgress.visible = false
 		$imgSuccess.visible = false
+		$imgProgressInRange.visible = false
 		await get_tree().create_timer(3).timeout
 		$".".queue_free()
 
+func is_on_player(body):
+	var node = body
+	while node != null:
+		if node == MyGlobals.player:
+			return true
+		node = node.get_parent()
+	return false
+
+func _on_area_2d_body_entered(body):
+	if( !isActive ):
+		return
 		
+	var isPlayer = is_on_player(body)
+	print("Collision ENTER. IsPlayer: %s" % isPlayer)
+	allowProgress = true
+	$imgProgressInRange.visible = true
+	$imgProgress.visible = false
+	pass # Replace with function body.
+
+
+func _on_area_2d_body_exited(body):
+	if( !isActive ):
+		return
+		
+	print("Collision EXIT.")
+	allowProgress = false
+	$imgProgressInRange.visible = false
+	$imgProgress.visible = true
+	pass # Replace with function body.

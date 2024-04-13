@@ -10,3 +10,5 @@ var wifeChatFinished = false
 var questResults = [""]
 var poopNum = 1
 
+var player = null
+

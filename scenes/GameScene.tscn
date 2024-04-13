@@ -1015,10 +1015,11 @@ layer_1/tile_data = PackedInt32Array(-327688, 4, 0, -262152, 4, 1, -196616, 4, 2
 layer_2/tile_data = PackedInt32Array()
 
 [node name="player" parent="Scale/ScalePlateLeft/quest_cryptDefense" instance=ExtResource("19_i34oj")]
-position = Vector2(-47.5083, -51.6084)
+position = Vector2(-46.5645, -53.4365)
 scale = Vector2(1.2585, 2.24996)
 
 [node name="enemy" parent="Scale/ScalePlateLeft/quest_cryptDefense" instance=ExtResource("20_waj8o")]
+visible = false
 position = Vector2(78.3415, -51.6084)
 scale = Vector2(0.943874, 1.68747)
 
@@ -1163,13 +1164,13 @@ offset_bottom = 40.0
 [connection signal="body_entered" from="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" to="Scale/ScalePlateLeft/quest_cryptDefense/player" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" to="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" to="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" method="_on_body_exited"]
-[connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_btn_main_menu_pressed"]
-[connection signal="pressed" from="Scale/Control/btnEndScreen" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Scale/Control/btnEndScreen" to="." method="_on_btn_end_screen_pressed"]
+[connection signal="pressed" from="Scale/Control/btnEndScreen" to="." method="_on_button_pressed"]
 [connection signal="gui_input" from="Scale/Control/DebugButtons" to="." method="_on_debug_buttons_gui_input"]
-[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartHome" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Scale/Control/DebugButtons/btnStartHome" to="." method="_on_btn_start_home_pressed"]
-[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartWork" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartHome" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Scale/Control/DebugButtons/btnStartWork" to="." method="_on_btn_start_work_pressed"]
+[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartWork" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Scale/Control/WifeChat/btnBeginDay" to="." method="_on_btn_begin_day_pressed"]

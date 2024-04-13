@@ -18,9 +18,10 @@ var current_dir = "none"
 var questPrefab = load("res://scenes/progress_meter.tscn")
 var stayAliveTenSecondsQuest = null
 
-
+# Setup function
 func _ready():
 	$AnimatedSprite2D.play("side_idle")
+	MyGlobals.player = get_tree().get_root()
 
 func _physics_process(delta):
 	player_movement(delta)
