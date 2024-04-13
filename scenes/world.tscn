@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dpqdr6ikh7a23"]
+[gd_scene load_steps=14 format=3 uid="uid://dpqdr6ikh7a23"]
 
 [ext_resource type="Texture2D" uid="uid://cijbn1e7ewhyh" path="res://sprites/tilesets/plains.png" id="1_155yh"]
 [ext_resource type="Texture2D" uid="uid://t1e2gy8wcgc3" path="res://sprites/tilesets/grass.png" id="2_ltbk0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cxfpjvfgypv5a" path="res://sprites/tilesets/floors/wooden.png" id="4_xr15v"]
 [ext_resource type="Texture2D" uid="uid://uksulftnugw4" path="res://sprites/tilesets/floors/flooring.png" id="5_wbop1"]
 [ext_resource type="PackedScene" uid="uid://h80n4mbesiy6" path="res://scenes/player.tscn" id="6_j00rm"]
+[ext_resource type="PackedScene" uid="uid://bvmxlem0gfsp6" path="res://enemy.tscn" id="7_d3iwb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pnski"]
 texture = ExtResource("1_155yh")
@@ -737,3 +738,5 @@ layer_1/name = "walls"
 layer_1/tile_data = PackedInt32Array()
 
 [node name="player" parent="." instance=ExtResource("6_j00rm")]
+
+[node name="enemy" parent="." instance=ExtResource("7_d3iwb")]

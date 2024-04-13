@@ -1,7 +1,8 @@
-[gd_scene load_steps=55 format=3 uid="uid://h80n4mbesiy6"]
+[gd_scene load_steps=58 format=3 uid="uid://h80n4mbesiy6"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_f6sgm"]
 [ext_resource type="Texture2D" uid="uid://dpg8boy2byjf2" path="res://sprites/characters/player.png" id="1_uoiwc"]
+[ext_resource type="Texture2D" uid="uid://l2wnxr0oxs2w" path="res://sprites/characters/henrietta-kheyfetc-pixel-example-Photoroom.png-Photoroom.png" id="3_nlgep"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_115vv"]
 atlas = ExtResource("1_uoiwc")
@@ -183,29 +184,29 @@ region = Rect2(192, 48, 48, 48)
 atlas = ExtResource("1_uoiwc")
 region = Rect2(240, 48, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1xdvx"]
-atlas = ExtResource("1_uoiwc")
-region = Rect2(0, 192, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgh8k"]
+atlas = ExtResource("3_nlgep")
+region = Rect2(157, 408, 157, 204)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rxmor"]
-atlas = ExtResource("1_uoiwc")
-region = Rect2(48, 192, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7del"]
+atlas = ExtResource("3_nlgep")
+region = Rect2(314, 408, 157, 204)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_22boy"]
-atlas = ExtResource("1_uoiwc")
-region = Rect2(96, 192, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ox7k4"]
+atlas = ExtResource("3_nlgep")
+region = Rect2(471, 408, 157, 204)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wugei"]
-atlas = ExtResource("1_uoiwc")
-region = Rect2(144, 192, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_cswap"]
+atlas = ExtResource("3_nlgep")
+region = Rect2(628, 408, 157, 204)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h0pog"]
-atlas = ExtResource("1_uoiwc")
-region = Rect2(192, 192, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_30mbo"]
+atlas = ExtResource("3_nlgep")
+region = Rect2(785, 408, 157, 204)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_072tc"]
-atlas = ExtResource("1_uoiwc")
-region = Rect2(240, 192, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvpdw"]
+atlas = ExtResource("3_nlgep")
+region = Rect2(942, 408, 157, 204)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4m8y2"]
 animations = [{
@@ -391,34 +392,60 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1xdvx")
+"texture": SubResource("AtlasTexture_vgh8k")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rxmor")
+"texture": SubResource("AtlasTexture_e7del")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_22boy")
+"texture": SubResource("AtlasTexture_ox7k4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wugei")
+"texture": SubResource("AtlasTexture_cswap")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h0pog")
+"texture": SubResource("AtlasTexture_30mbo")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_072tc")
+"texture": SubResource("AtlasTexture_nvpdw")
 }],
 "loop": true,
 "name": &"side_walk",
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ia0nc"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d30j7"]
+radius = 12.6491
+
 [node name="player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_f6sgm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -13)
+scale = Vector2(0.137165, 0.137165)
 sprite_frames = SubResource("SpriteFrames_4m8y2")
-animation = &"side_idle"
-frame_progress = 0.164567
+animation = &"side_walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -14)
+shape = SubResource("CapsuleShape2D_ia0nc")
+
+[node name="player_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_d30j7")
+
+[node name="attack_cooldown" type="Timer" parent="."]
+
+[node name="deal_attack_timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="deal_attack_timer" to="." method="_on_deal_attack_timer_timeout"]
