@@ -192,8 +192,5 @@ func _on_dodgetimer_timeout():
 	global.player_dodge = false
 	
 
-
-
-
-func _on_area_2d_body_entered(body):
-	translate(Vector2(500, 0))
+func _on_area_2d_body_entered(_body):
+	translate(Vector2(200, 0))

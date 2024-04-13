@@ -1047,6 +1047,7 @@ script = ExtResource("23_nyvb8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" groups=["Portal"]]
 shape = SubResource("CapsuleShape2D_52qje")
+disabled = true
 
 [node name="animScaleUpDown" type="AnimationPlayer" parent="Scale"]
 libraries = {
