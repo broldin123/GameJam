@@ -1,12 +1,48 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlb3nbb7k6p1i"]
+[gd_scene load_steps=5 format=3 uid="uid://dlb3nbb7k6p1i"]
 
 [ext_resource type="Script" path="res://GameScene.gd" id="1_8ahbh"]
+[ext_resource type="Texture2D" uid="uid://byg1lr85m6v0c" path="res://scaleBeam.png" id="2_ttryy"]
+[ext_resource type="Texture2D" uid="uid://buk33vgcta34w" path="res://scalePlate.png" id="3_cot5q"]
+[ext_resource type="Texture2D" uid="uid://5cbp1tr0dntk" path="res://scaleCenter.png" id="4_50k31"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(4, 616)
 script = ExtResource("1_8ahbh")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Scale" type="Sprite2D" parent="."]
+position = Vector2(599, -321)
+
+[node name="ScaleBeam" type="Sprite2D" parent="Scale"]
+position = Vector2(-1, -158)
+rotation = 1.57839
+scale = Vector2(1.18231, 2.60758)
+texture = ExtResource("2_ttryy")
+
+[node name="AttachPointRight" type="Node2D" parent="Scale/ScaleBeam"]
+position = Vector2(4.72643, -122.403)
+rotation = -1.76302
+scale = Vector2(0.982055, 1.51073)
+
+[node name="AttachPointLeft" type="Node2D" parent="Scale/ScaleBeam"]
+position = Vector2(5.16099, 121.474)
+rotation = -1.76302
+scale = Vector2(0.982055, 1.51073)
+
+[node name="ScalePlateRight" type="Sprite2D" parent="Scale"]
+position = Vector2(303, 54)
+rotation = 0.0102167
+scale = Vector2(2.92343, 1.93315)
+texture = ExtResource("3_cot5q")
+
+[node name="ScalePlateLeft" type="Sprite2D" parent="Scale"]
+position = Vector2(-309, 28)
+scale = Vector2(3.17839, 1.77781)
+texture = ExtResource("3_cot5q")
+
+[node name="ScaleCenter" type="Sprite2D" parent="Scale"]
+position = Vector2(3, 38)
+scale = Vector2(1.99791, 1.53905)
+texture = ExtResource("4_50k31")
 
 [node name="btnMainMenu" type="Button" parent="."]
 offset_right = 8.0
@@ -16,9 +52,10 @@ size_flags_vertical = 0
 text = "Menu"
 
 [node name="btnEndScreen" type="Button" parent="."]
-offset_left = 1049.0
-offset_right = 1143.0
-offset_bottom = 31.0
+offset_left = 1125.0
+offset_top = -16.0
+offset_right = 1219.0
+offset_bottom = 15.0
 size_flags_horizontal = 8
 text = "End Screen"
 
