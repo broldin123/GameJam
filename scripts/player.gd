@@ -9,6 +9,10 @@ var player_alive = true
 
 var attack_ip = false
 var dodge_ip = false
+var basementHome = 87
+var firstFloor = 50
+var secondFloor = -2.5
+var firstFloorXLeft = -25
 
 var player_dodge = false
 
@@ -17,6 +21,8 @@ var current_dir = "none"
 
 func _ready():
 	$AnimatedSprite2D.play("side_idle")
+	$"../../../ScalePlateLeft/quest_cryptDefense/playerWork".set_process(false)
+	$"../../../ScalePlateLeft/quest_cryptDefense/playerWork".visible = false
 
 func _physics_process(delta):
 	player_movement(delta)
@@ -193,4 +199,23 @@ func _on_dodgetimer_timeout():
 	
 
 func _on_area_2d_body_entered(_body):
-	translate(Vector2(200, 0))
+	self.position.y = firstFloor
+	self.position.x = firstFloorXLeft
+	
+
+func _on_first_floor_body_entered(body):
+	self.position.y = firstFloor
+	print(int(self.position.y), "going from first floor to second")
+
+
+func _on_second_floor_body_entered(body):
+	self.position.y = secondFloor
+	print(int(self.position.y), "going from second floor to first")
+
+func _process(_delta):
+	print(int(self.position.y), "is your current y position!")
+	print(int(self.position.x), "is your current x position!")
+
+
+func _on_first_floor_to_basement_body_entered(body):
+	self.position.y = basementHome

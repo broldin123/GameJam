@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cssdlulhei1cu"]
+[gd_scene load_steps=43 format=3 uid="uid://cssdlulhei1cu"]
 
 [ext_resource type="Script" path="res://scripts/GameScene.gd" id="1_jyku5"]
 [ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://UI/myTheme.tres" id="2_c2duk"]
@@ -46,6 +46,16 @@ tracks/0/keys = {
 _data = {
 "skeleDog walk cycle": SubResource("Animation_r6irv")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7wdv"]
+size = Vector2(99.571, 55.7996)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4nck"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1pkdc"]
+size = Vector2(12.361, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7w1ke"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pnski"]
 texture = ExtResource("14_nuoot")
@@ -990,6 +1000,68 @@ offset_top = 64.0
 offset_right = 238.0
 offset_bottom = 104.0
 
+[node name="Node2D" type="Node2D" parent="Scale/ScalePlateRight"]
+
+[node name="playerHome" parent="Scale/ScalePlateRight/Node2D" instance=ExtResource("19_i34oj")]
+position = Vector2(-47.6449, 87.1282)
+scale = Vector2(1.2585, 2.24996)
+
+[node name="FirstFloorToBasement" type="Sprite2D" parent="Scale/ScalePlateRight/Node2D"]
+position = Vector2(-49.1114, 21.9688)
+scale = Vector2(0.129875, 0.129875)
+texture = ExtResource("22_s3kbp")
+
+[node name="FirstFloorToBasement" type="Area2D" parent="Scale/ScalePlateRight/Node2D/FirstFloorToBasement"]
+position = Vector2(2.63365, -0.0406922)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scale/ScalePlateRight/Node2D/FirstFloorToBasement/FirstFloorToBasement"]
+position = Vector2(39.7849, 39.2377)
+shape = SubResource("RectangleShape2D_h7wdv")
+
+[node name="SecondFloor" type="Sprite2D" parent="Scale/ScalePlateRight/Node2D"]
+position = Vector2(83.33, -20.4283)
+scale = Vector2(0.129875, 0.129875)
+texture = ExtResource("22_s3kbp")
+
+[node name="SecondFloor" type="Area2D" parent="Scale/ScalePlateRight/Node2D/SecondFloor"]
+scale = Vector2(0.546505, 0.9986)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scale/ScalePlateRight/Node2D/SecondFloor/SecondFloor"]
+scale = Vector2(9.3861, 6.21119)
+shape = SubResource("RectangleShape2D_c4nck")
+
+[node name="FirstFloorToSecond" type="Sprite2D" parent="Scale/ScalePlateRight/Node2D"]
+position = Vector2(80.9535, 32.8922)
+scale = Vector2(0.129875, 0.129875)
+texture = ExtResource("22_s3kbp")
+
+[node name="FirstFloor" type="Area2D" parent="Scale/ScalePlateRight/Node2D/FirstFloorToSecond"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scale/ScalePlateRight/Node2D/FirstFloorToSecond/FirstFloor"]
+position = Vector2(46.8215, 0)
+rotation = 3.14159
+scale = Vector2(12.2587, -10.7519)
+shape = SubResource("RectangleShape2D_1pkdc")
+
+[node name="Basement" type="Sprite2D" parent="Scale/ScalePlateRight/Node2D"]
+position = Vector2(-75.1204, 70.9985)
+scale = Vector2(0.129875, 0.129875)
+texture = ExtResource("22_s3kbp")
+
+[node name="Area2D" type="Area2D" parent="Scale/ScalePlateRight/Node2D/Basement"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scale/ScalePlateRight/Node2D/Basement/Area2D"]
+scale = Vector2(7.78844, 1)
+shape = SubResource("RectangleShape2D_7w1ke")
+
 [node name="ScalePlateLeft" type="Sprite2D" parent="Scale"]
 position = Vector2(-309, -17)
 scale = Vector2(3.17839, 1.77781)
@@ -1014,11 +1086,12 @@ layer_1/name = "walls"
 layer_1/tile_data = PackedInt32Array(-327688, 4, 0, -262152, 4, 1, -196616, 4, 2, -327687, 65540, 0, -262151, 65540, 1, -196615, 65540, 2, -327686, 131076, 0, -262150, 131076, 1, -196614, 131076, 2, -131080, 4, 0, -65544, 4, 1, -8, 4, 2, -131079, 65540, 0, -65543, 65540, 1, -7, 65540, 2, -131078, 131076, 0, -65542, 131076, 1, -6, 131076, 2, -196580, 4, 0, -131044, 4, 1, -65508, 4, 2, -196579, 65540, 0, -131043, 65540, 1, -65507, 65540, 2, -196578, 131076, 0, -131042, 131076, 1, -65506, 131076, 2, -393188, 4, 0, -327652, 4, 1, -262116, 4, 2, -393187, 65540, 0, -327651, 65540, 1, -262115, 65540, 2, -393186, 131076, 0, -327650, 131076, 1, -262114, 131076, 2)
 layer_2/tile_data = PackedInt32Array()
 
-[node name="player" parent="Scale/ScalePlateLeft/quest_cryptDefense" instance=ExtResource("19_i34oj")]
+[node name="playerWork" parent="Scale/ScalePlateLeft/quest_cryptDefense" instance=ExtResource("19_i34oj")]
 position = Vector2(-47.5083, -51.6084)
 scale = Vector2(1.2585, 2.24996)
 
 [node name="enemy" parent="Scale/ScalePlateLeft/quest_cryptDefense" instance=ExtResource("20_waj8o")]
+visible = false
 position = Vector2(78.3415, -51.6084)
 scale = Vector2(0.943874, 1.68747)
 
@@ -1160,7 +1233,12 @@ offset_bottom = 40.0
 
 [node name="workLife" type="Node" parent="."]
 
-[connection signal="body_entered" from="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" to="Scale/ScalePlateLeft/quest_cryptDefense/player" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Scale/ScalePlateRight/Node2D/FirstFloorToBasement/FirstFloorToBasement" to="Scale/ScalePlateRight/Node2D/playerHome" method="_on_first_floor_to_basement_body_entered"]
+[connection signal="body_entered" from="Scale/ScalePlateRight/Node2D/SecondFloor/SecondFloor" to="Scale/ScalePlateRight/Node2D/playerHome" method="_on_second_floor_body_entered"]
+[connection signal="body_entered" from="Scale/ScalePlateRight/Node2D/FirstFloorToSecond/FirstFloor" to="Scale/ScalePlateRight/Node2D/playerHome" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Scale/ScalePlateRight/Node2D/FirstFloorToSecond/FirstFloor" to="Scale/ScalePlateRight/Node2D/playerHome" method="_on_first_floor_body_entered"]
+[connection signal="body_entered" from="Scale/ScalePlateRight/Node2D/Basement/Area2D" to="Scale/ScalePlateRight/Node2D/playerHome" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" to="Scale/ScalePlateLeft/quest_cryptDefense/playerWork" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" to="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" to="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" method="_on_body_exited"]
 [connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_button_pressed"]
