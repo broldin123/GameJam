@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cxfpjvfgypv5a" path="res://sprites/tilesets/floors/wooden.png" id="4_xr15v"]
 [ext_resource type="Texture2D" uid="uid://uksulftnugw4" path="res://sprites/tilesets/floors/flooring.png" id="5_wbop1"]
 [ext_resource type="PackedScene" uid="uid://h80n4mbesiy6" path="res://scenes/player.tscn" id="6_j00rm"]
-[ext_resource type="PackedScene" uid="uid://bvmxlem0gfsp6" path="res://enemy.tscn" id="7_d3iwb"]
+[ext_resource type="PackedScene" path="res://enemy.tscn" id="7_d3iwb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pnski"]
 texture = ExtResource("1_155yh")
