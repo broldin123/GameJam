@@ -11,7 +11,11 @@ config_version=5
 [application]
 
 config/name="GameJam"
+<<<<<<< HEAD
 run/main_scene="res://scenes/player.tscn"
+=======
+run/main_scene="res://TitleScene.tscn"
+>>>>>>> origin/main
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://sprites/icon.svg"
 
