@@ -440,14 +440,14 @@ radius = 6.25
 radius = 12.6491
 
 [node name="player" type="CharacterBody2D"]
-scale = Vector2(4, 4)
+scale = Vector2(2.5, 2.5)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_f6sgm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -13)
-scale = Vector2(0.137165, 0.137165)
+position = Vector2(1, -9)
+scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_4m8y2")
 animation = &"dodge_attack"
 frame_progress = 0.332886
