@@ -11,6 +11,7 @@ var isWorkActive = false
 var questResults = [""]
 var poopNum = 1
 var adventurerNum = 1
+var completedQuest = 0
 
 var gameTimeLeft = -1
 var gameDuration = 100
@@ -43,7 +44,7 @@ func SetPlayerHealthDisplay(newHealthPercent):
 
 func ShowPortalToHome():
 	portalToHome.visible = true
-	return
+	return 
 
 func OnSceneLoaded(sceneName):
 	testA = "456"
@@ -106,14 +107,15 @@ func SetPlayer(isWork):
 	if isWorkActive:
 		animatedScale.play("RightUpToDown")
 	else:
+		#homelife mode - normal music
 		animatedScale.play("RightDownToUp")
 		
 	if isWorkActive:	
+		#Going to work - add epic fighting music
 		adventureProgress = questPrefab.instantiate()
 		var timeLimit = 30 - (adventurerNum * 5);
 		if( timeLimit < 10):
 			timeLimit = timeLimit
-		
 		adventureProgress._setup("Defeat Adventurer #%s" % adventurerNum, -1, timeLimit)
 		adventurerNum += 1
 		adventurer.add_child(adventureProgress)

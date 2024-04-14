@@ -80,18 +80,27 @@ func _process(delta):
 	#print("timeTotalProgressRequired: ", timeTotalProgressRequired)
 	$txtProgress.text = "[center]%s%%[/center]" % curPercentProgress
 	
+	
+		
+	
 	if(curPercentProgress >= 100):
 		isActive = false
 		$txtTitle.text = ""
 		$txtProgress.text = ""
 		$txtTimeLeft.text = "[center]Completed: %s[/center]" % questTitle
 		global.questResults.append( "Completed: %s" % questTitle )
+		global.completedQuest += 1
+		print(global.completedQuest)
 		$imgFail.visible = false
 		$imgProgress.visible = false
 		$imgSuccess.visible = true
 		$imgProgressInRange.visible = false
 		await get_tree().create_timer(3).timeout
 		$".".queue_free()
+		
+	#	if(global.completedQuest ==1):
+	#		$MusicTimer.start()
+	#		global.completedQuest -= 1
 	
 	if(timeUntilFailed <= 0):
 		isActive = false
@@ -143,3 +152,7 @@ func _on_area_2d_body_exited(body):
 	$imgProgress.visible = true
 	pass # Replace with function body.
 '''
+
+
+#func _on_music_timer_timeout():
+#	$DoingWork.play()

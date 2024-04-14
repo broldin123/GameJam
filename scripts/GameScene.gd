@@ -31,6 +31,7 @@ func _on_btn_start_home_pressed():
 
 func _on_btn_start_work_pressed():
 	global.animatedScale.play("RightUpToDown")
+	$workMusic.play()
 	
 func _on_btn_end_screen_pressed():
 	get_tree().change_scene_to_file("res://scenes/EndScene.tscn")
@@ -52,6 +53,7 @@ func trySpawnDogPoop():
 	timeUntilNextDogPoop = randf_range(7, 20)
 	var newProgressMeter = questPrefab.instantiate()
 	print("poop %s spawned!" % global.poopNum)
+	$Poop.play()
 	newProgressMeter._setup("Clean Poop #%s" % global.poopNum, 2, 10)
 	global.poopNum += 1
 	$Scale/ScalePlateRight/House/Skeledog.get_parent().add_child(newProgressMeter)

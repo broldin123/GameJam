@@ -10,6 +10,7 @@ var curHealth = 5
 var player_inattack_zone = false
 var can_take_damage = true
 var lastTimeUntilSummonPrinted = 0
+var changeWeaponSound = 0
 
 var cooldownDurationMax = 2.5
 var cooldownDurationMin = 1
@@ -51,7 +52,15 @@ func _physics_process(_delta):
 		if attackReady and distToPlayer <= distToAttack:
 			$AnimatedSprite2D.play("side_attack")
 			global.workPlayer.enemy_attack()
+			
 			resetAttackCooldown()
+			if changeWeaponSound == 0:
+				$Attack1.play()
+				changeWeaponSound += 1
+				print(changeWeaponSound)
+			elif changeWeaponSound == 1:
+				$Attack2.play()
+				changeWeaponSound -= 1
 		elif cooldownRemaining == 0:
 			$AnimatedSprite2D.play("walk")
 			
@@ -72,7 +81,7 @@ func resetAttackCooldown():
 	cooldownRemaining = random_number
 
 func _process(delta):
-	print("AttackCooldown: ", cooldownRemaining)
+	#print("AttackCooldown: ", cooldownRemaining)
 	if global.gameTimeLeft == 0:
 		return	
 	
@@ -99,6 +108,7 @@ func _process(delta):
 			
 		if timeUntilSummon < 0:
 			global.SetPlayer(true)
+			$workMusic.play()
 			var min_value = 17.0
 			var max_value = 33.0
 			var random_float = randf() * (max_value - min_value) + min_value		
@@ -152,10 +162,13 @@ func deal_with_damage():
 				#TODO: This portal should appear when the human is defeated! 
 				#The skeleton will be able to return home via the portal
 				#When the skeleton goes through the portal, the human should respawn and begin summoning the skeleton again (15 seconds)
+				$workMusic.stop()
+				$DeathCry.play()
 				print("enemy is dead")
 				$AnimatedSprite2D.visible = false
 				player_chase = false
 				global.ShowPortalToHome()
+				$PortalAppear.play()
 				
 
 func _on_take_damage_cooldown_timeout():

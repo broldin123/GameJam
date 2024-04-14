@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cssdlulhei1cu"]
+[gd_scene load_steps=61 format=3 uid="uid://cssdlulhei1cu"]
 
 [ext_resource type="Script" path="res://scripts/GameScene.gd" id="1_jyku5"]
 [ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://UI/myTheme.tres" id="2_c2duk"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://8vg20au7sr2m" path="res://sprites/wifeChat.png" id="10_7iv1a"]
 [ext_resource type="Texture2D" uid="uid://cww4x3xttvdgg" path="res://sprites/blankBubble.png" id="11_jfon1"]
 [ext_resource type="Script" path="res://scenes/btnBeginDay.gd" id="12_ifv8h"]
+[ext_resource type="Texture2D" uid="uid://eatstgx0e6k8" path="res://sprites/characters/portal3_spritesheet.png" id="13_ptmkm"]
 [ext_resource type="Texture2D" uid="uid://cijbn1e7ewhyh" path="res://sprites/tilesets/plains.png" id="14_nuoot"]
 [ext_resource type="Texture2D" uid="uid://t1e2gy8wcgc3" path="res://sprites/tilesets/grass.png" id="15_r3uud"]
 [ext_resource type="Texture2D" uid="uid://cwlmituya3gmc" path="res://sprites/objects/objects.png" id="16_lffle"]
@@ -26,6 +27,9 @@
 [ext_resource type="PackedScene" uid="uid://bvmxlem0gfsp6" path="res://enemy.tscn" id="20_waj8o"]
 [ext_resource type="Texture2D" uid="uid://10ptdddshelw" path="res://sprites/characters/pdTP5o.png" id="22_s3kbp"]
 [ext_resource type="Script" path="res://scenes/Area2D.gd" id="23_nyvb8"]
+[ext_resource type="AudioStream" uid="uid://ms3yyj7vk2b" path="res://soundEffects/turd-165629.mp3" id="27_ggtmi"]
+[ext_resource type="AudioStream" uid="uid://br37oyqyu73bu" path="res://soundEffects/the-magical-surprise-141291.mp3" id="27_jbesj"]
+[ext_resource type="AudioStream" uid="uid://bbqlsf30lv1dn" path="res://music/Kevin MacLeod   Pop Goes the Weasel.mp3" id="27_laqrv"]
 
 [sub_resource type="Animation" id="Animation_r6irv"]
 resource_name = "skeleDog walk cycle"
@@ -42,6 +46,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-132, 107), Vector2(218, 145), Vector2(-216, 129), Vector2(-111, 77), Vector2(-111, 77), Vector2(191, 77), Vector2(191, -24), Vector2(-30, -17), Vector2(-104, -17), Vector2(-104, -17)]
+}
+
+[sub_resource type="Animation" id="Animation_22lv0"]
+resource_name = "skeleKid 2 walk cycle"
+length = 40.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 5.2, 14.5, 15.6, 19.6, 20.3, 25.1, 26.2, 30.4, 31.1, 36.3, 39),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-43, 81), Vector2(-43, 81), Vector2(115, 81), Vector2(115, 81), Vector2(184, 79), Vector2(172, -17), Vector2(98, -14), Vector2(98, -14), Vector2(-74, -16), Vector2(-74, -16), Vector2(153, -16), Vector2(153, -16)]
 }
 
 [sub_resource type="Animation" id="Animation_7xlip"]
@@ -61,22 +81,6 @@ tracks/0/keys = {
 "values": [Vector2(-53, -18), Vector2(178, -19), Vector2(182, 81), Vector2(33, 81.0001), Vector2(33, 81.0001), Vector2(105, 81.0001), Vector2(105, 81.0001), Vector2(-153, 88.0001), Vector2(30, 143)]
 }
 
-[sub_resource type="Animation" id="Animation_22lv0"]
-resource_name = "skeleKid 2 walk cycle"
-length = 40.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1, 5.2, 14.5, 15.6, 19.6, 20.3, 25.1, 26.2, 30.4, 31.1, 36.3, 39),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-43, 81), Vector2(-43, 81), Vector2(115, 81), Vector2(115, 81), Vector2(184, 79), Vector2(172, -17), Vector2(98, -14), Vector2(98, -14), Vector2(-74, -16), Vector2(-74, -16), Vector2(153, -16), Vector2(153, -16)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lvwot"]
 _data = {
 "skeleDog walk cycle": SubResource("Animation_r6irv"),
@@ -93,6 +97,63 @@ size = Vector2(99.571, 55.7996)
 size = Vector2(12.361, 10.3023)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7w1ke"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkdk4"]
+atlas = ExtResource("13_ptmkm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0o7b"]
+atlas = ExtResource("13_ptmkm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frlp8"]
+atlas = ExtResource("13_ptmkm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3flvu"]
+atlas = ExtResource("13_ptmkm")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tlj7"]
+atlas = ExtResource("13_ptmkm")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uu2y"]
+atlas = ExtResource("13_ptmkm")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsckh"]
+atlas = ExtResource("13_ptmkm")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r0p1j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkdk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0o7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frlp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3flvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tlj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0uu2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lsckh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_52qje"]
 radius = 77.2653
@@ -1147,6 +1208,11 @@ scale = Vector2(0.0850031, 0.15197)
 texture = ExtResource("22_s3kbp")
 script = ExtResource("17_w15gs")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Scale/ScalePlateLeft/PortalToHome"]
+sprite_frames = SubResource("SpriteFrames_r0p1j")
+animation = &"idle"
+frame_progress = 0.350001
+
 [node name="Area2D" type="Area2D" parent="Scale/ScalePlateLeft/PortalToHome"]
 collision_layer = 2
 collision_mask = 2
@@ -1366,6 +1432,17 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="workLife" type="Node" parent="."]
+
+[node name="PortalAppear" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(8, -27)
+stream = ExtResource("27_jbesj")
+
+[node name="workMusic" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(8, -27)
+stream = ExtResource("27_laqrv")
+
+[node name="Poop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("27_ggtmi")
 
 [connection signal="body_entered" from="Scale/ScalePlateRight/Node2D/FirstFloorToBasement/FirstFloorToBasement" to="Scale/ScalePlateRight/Node2D/playerHome" method="_on_first_floor_to_basement_body_entered"]
 [connection signal="body_entered" from="Scale/ScalePlateRight/Node2D/SecondFloor/SecondFloor" to="Scale/ScalePlateRight/Node2D/playerHome" method="_on_second_floor_body_entered"]

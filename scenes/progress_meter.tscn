@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmkpgx61nyciv"]
+[gd_scene load_steps=10 format=3 uid="uid://cmkpgx61nyciv"]
 
 [ext_resource type="Script" path="res://scripts/ProgressMeter.gd" id="1_aodjh"]
 [ext_resource type="Texture2D" uid="uid://cddh8mxxb0ics" path="res://sprites/progress.png" id="2_1s53i"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://bt2qgdlcvnhlx" path="res://UI/BoneyardBrawl-rgBdy.ttf" id="4_tb1dq"]
 [ext_resource type="Texture2D" uid="uid://dw7darqpwr6lm" path="res://sprites/success.png" id="4_xl2c7"]
 [ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://UI/myTheme.tres" id="5_ts2te"]
+[ext_resource type="AudioStream" uid="uid://bqlc3mgrg7skk" path="res://mangottado.wav" id="8_khnno"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_847m5"]
 radius = 60.0333
@@ -80,5 +81,13 @@ text = "[center]10s[/center]"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_847m5")
 
+[node name="DoingWork" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_khnno")
+
+[node name="MusicTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="MusicTimer" to="." method="_on_music_timer_timeout"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpqdr6ikh7a23"]
+[gd_scene load_steps=10 format=3 uid="uid://dpqdr6ikh7a23"]
 
 [ext_resource type="PackedScene" uid="uid://h80n4mbesiy6" path="res://scenes/player.tscn" id="6_j00rm"]
+[ext_resource type="AudioStream" uid="uid://br37oyqyu73bu" path="res://soundEffects/the-magical-surprise-141291.mp3" id="6_tct7f"]
 [ext_resource type="PackedScene" uid="uid://bvmxlem0gfsp6" path="res://enemy.tscn" id="7_d3iwb"]
-[ext_resource type="Texture2D" uid="uid://dbj2g57gwd7ec" path="res://sprites/tilesets/ezgif-5-8dd9f9d424.jpg" id="8_iiu67"]
+[ext_resource type="AudioStream" uid="uid://bbqlsf30lv1dn" path="res://music/Kevin MacLeod   Pop Goes the Weasel.mp3" id="7_dds3q"]
 [ext_resource type="Texture2D" uid="uid://10ptdddshelw" path="res://sprites/characters/pdTP5o.png" id="9_mdl84"]
 [ext_resource type="Script" path="res://scenes/Area2D.gd" id="10_a478d"]
 
@@ -35,11 +36,6 @@ layer_2/tile_data = PackedInt32Array()
 visible = false
 position = Vector2(51, -230)
 
-[node name="Ezgif-5-8Dd9f9d424" type="Sprite2D" parent="."]
-position = Vector2(175, -257)
-scale = Vector2(0.192997, 0.192997)
-texture = ExtResource("8_iiu67")
-
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_iydya")
 format = 2
@@ -57,6 +53,12 @@ script = ExtResource("10_a478d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" groups=["Portal"]]
 shape = SubResource("CapsuleShape2D_klc4e")
+
+[node name="Portal Spawn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_tct7f")
+
+[node name="workMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_dds3q")
 
 [connection signal="body_entered" from="Sprite2D/Area2D" to="player" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Sprite2D/Area2D" to="Sprite2D/Area2D" method="_on_body_entered"]

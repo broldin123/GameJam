@@ -1,8 +1,11 @@
-[gd_scene load_steps=60 format=3 uid="uid://h80n4mbesiy6"]
+[gd_scene load_steps=65 format=3 uid="uid://h80n4mbesiy6"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_f6sgm"]
 [ext_resource type="Texture2D" uid="uid://dpg8boy2byjf2" path="res://sprites/characters/player.png" id="1_uoiwc"]
 [ext_resource type="Texture2D" uid="uid://l2wnxr0oxs2w" path="res://sprites/characters/henrietta-kheyfetc-pixel-example-Photoroom.png-Photoroom.png" id="3_nlgep"]
+[ext_resource type="AudioStream" uid="uid://loawpga0kvng" path="res://soundEffects/magical-spell-cast-190272.mp3" id="4_a1dgl"]
+[ext_resource type="AudioStream" uid="uid://c01ufashhvn5e" path="res://soundEffects/swing-whoosh-weapon-1-189819.mp3" id="5_iihww"]
+[ext_resource type="AudioStream" uid="uid://di8brp7m5e0if" path="res://daddyHome.wav" id="6_wm4qw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_115vv"]
 atlas = ExtResource("1_uoiwc")
@@ -80,13 +83,21 @@ region = Rect2(48, 432, 48, 48)
 atlas = ExtResource("1_uoiwc")
 region = Rect2(96, 432, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q0gqb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr1rb"]
 atlas = ExtResource("3_nlgep")
-region = Rect2(165, 792, 153, 198)
+region = Rect2(158, 792, 158, 198)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lb5jp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xeuu"]
 atlas = ExtResource("3_nlgep")
-region = Rect2(318, 792, 153, 198)
+region = Rect2(316, 792, 158, 198)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4ro6"]
+atlas = ExtResource("3_nlgep")
+region = Rect2(474, 792, 158, 198)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyvwq"]
+atlas = ExtResource("3_nlgep")
+region = Rect2(632, 792, 158, 198)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31tn6"]
 atlas = ExtResource("1_uoiwc")
@@ -297,10 +308,25 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q0gqb")
+"texture": SubResource("AtlasTexture_nr1rb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lb5jp")
+"texture": SubResource("AtlasTexture_5xeuu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4ro6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyvwq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4ro6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xeuu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr1rb")
 }],
 "loop": false,
 "name": &"dodge_attack",
@@ -469,6 +495,18 @@ wait_time = 2.0
 
 [node name="dodgetimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="SpellCast" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_a1dgl")
+volume_db = -10.0
+
+[node name="Dodge" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_iihww")
+
+[node name="daddyHome" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1, -9)
+scale = Vector2(0.1, 0.1)
+stream = ExtResource("6_wm4qw")
 
 [connection signal="area_entered" from="player_hitbox" to="." method="_on_player_hitbox_area_entered"]
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]

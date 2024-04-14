@@ -44,6 +44,7 @@ func _physics_process(delta):
 	attack()
 	#dodge()
 	
+	
 	if health <= 0:
 		player_alive = false #goes back to family world
 		health = 0
@@ -101,6 +102,7 @@ func player_movement(_delta):
 	#	velocity.x = 0
 	elif global.player_dodge == true:
 			anim.play("dodge_attack")
+			$Dodge.play()
 	else:
 		play_anim(0)
 		velocity.x = 0
@@ -220,6 +222,7 @@ func attack():
 	if Input.is_action_just_pressed("attack"):
 		global.player_current_attack = true
 		attack_ip = true
+		$SpellCast.play()
 		if dir == "right":
 			$AnimatedSprite2D.flip_h = false
 			$AnimatedSprite2D.play("side_attack")
@@ -265,6 +268,7 @@ func _process(delta):
 	global.player_dodge = Input.is_action_pressed("dodge")
 	if( global.player_dodge and timeSinceLastDodge > 2):
 		$AnimatedSprite2D.play("dodge_attack")
+		$Dodge.play()
 	if( global.player_dodge ):
 		timeSinceLastDodge = 0
 	
