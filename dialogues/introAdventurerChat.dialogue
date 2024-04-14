@@ -1,9 +1,10 @@
 ~ start
-Adventurer: Hark! I am Sir Oodles, noble knight of these lands! I have summoned you here to slay you, foul beast!
-- Sir I was literally just minding my own business
+Adventurer: Hark! I am Sir Oodles the 16th of the Order of the Hawk, formerly known as the Order of the Duck, noble knight of these lands! I have summoned ye here to slay ye, foul beast!
+- (sigh) Aaaagh!
 	Adventurer: What ho! That is exactly what a devil's incarnation might be expected to say!
-- Could you not?
-	Adventurer: Actually no! I must! I am here to defend the people!
-- Good luck with that! => END
+- Uuuuuugah!
+	Adventurer: Monster, ye cries do not scare me! I am not at all frightened. 
+	(The Adventurer looks frightened)
+- Uugaraaaar!  => END
 Adventurer: Enough chitter chatter brittle-bones! It is time for you to die! 
 => END

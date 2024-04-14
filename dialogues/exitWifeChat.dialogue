@@ -1,7 +1,17 @@
 ~ start
-Patella: Good evening my love how was your day without me?
-- Wonderful! The dog was not much trouble.
-- Tragic, I felt so alone.
+Patella: Good evening my love, how was your day without me?
+- As hard as every other one.
+- I made it work but it's never the same without you.
+Patella: I know you're trying your best. And that's what matters. You're never going to find that perfect balance.
+- I'll never forget you, Tella. I'll make sure the boys know how hard you worked and how much you cared about them.
+- I never feel like I'm doing enough.
+Patella: I'm proud of you. If I could smile, I would. 
+Patella: Remember to not be hard on yourself. You're exactly where you're supposed to be, my dear. 
+Patella: And one day, I hope we will rest together.
+The image of Patella evaporates infront of you. You hear a child in the distance.
+Mandebilly: DAD! Femora's being mean to me and Rex pooped on the carpet again!
+You chuckle to yourself, knowing the days ahead aren't always going to be easy, but you think about something Patella used to always tell you.
+It's okay not to be a perfect dad. And sometimes, just showing up is enough.
 set global.shouldBringToEndScene = true
 => END
 
