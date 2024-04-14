@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bvmxlem0gfsp6"]
+[gd_scene load_steps=36 format=3 uid="uid://bvmxlem0gfsp6"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_586o6"]
 [ext_resource type="Texture2D" uid="uid://dnmj0rd8jnpo3" path="res://sprites/characters/dcdm8qc-85787558-abc9-4fde-8951-ccc55d926ed3.png" id="3_egy2l"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://d1vgxi01348oq" path="res://soundEffects/guttural scream.wav" id="8_yqhhd"]
 [ext_resource type="AudioStream" uid="uid://br37oyqyu73bu" path="res://soundEffects/the-magical-surprise-141291.mp3" id="9_k1sc4"]
 [ext_resource type="AudioStream" uid="uid://bbqlsf30lv1dn" path="res://music/Kevin MacLeod   Pop Goes the Weasel.mp3" id="9_kbv1v"]
+[ext_resource type="AudioStream" uid="uid://di8brp7m5e0if" path="res://daddyHome.wav" id="11_3uv1q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x76wr"]
 atlas = ExtResource("3_ff5ns")
@@ -236,8 +237,6 @@ offset_right = 77.3333
 offset_bottom = -15.0
 theme_override_fonts/font = ExtResource("4_an3qy")
 text = "Summoning: 4"
-visible_characters = 13
-visible_ratio = 1.08333
 
 [node name="SummoningTimer2" type="Timer" parent="."]
 wait_time = 16.0
@@ -270,6 +269,9 @@ stream = ExtResource("9_k1sc4")
 
 [node name="workMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_kbv1v")
+
+[node name="daddysHome" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_3uv1q")
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

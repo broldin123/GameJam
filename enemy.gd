@@ -94,7 +94,7 @@ func _process(delta):
 	if !visible:
 		$Label2.set_text("")
 	
-	if visible and !global.isWorkActive:
+	if visible and !global.isWorkActive and !global.inDialogue:
 		timeUntilSummon -= delta
 		
 		if int(timeUntilSummon) != lastTimeUntilSummonPrinted:
@@ -144,32 +144,30 @@ func _on_enemy_hitbox_body_entered(body):
 #		player_inattack_zone = false
 
 func deal_with_damage():
-	if player_inattack_zone and global.player_current_attack == true:
+	if player_inattack_zone and global.player_current_attack == true and $AnimatedSprite2D.visible and can_take_damage == true: 
+		curHealth = curHealth - 1
+		$take_damage_cooldown.start()
+		can_take_damage = false
+		var healthPercent = 100 - (float(curHealth) / totalHealth) * 100
+		print("hero health = ", curHealth, " out of ", totalHealth, " - Percent: ", healthPercent)
 		
-		if can_take_damage == true:
-			curHealth = curHealth - 1
-			$take_damage_cooldown.start()
-			can_take_damage = false
-			var healthPercent = 100 - (float(curHealth) / totalHealth) * 100
-			print("hero health = ", curHealth, " out of ", totalHealth, " - Percent: ", healthPercent)
+		if( global.adventureProgress != null ):
+			global.adventureProgress.SetProgressPercent( healthPercent)
 			
-			if( global.adventureProgress != null ):
-				global.adventureProgress.SetProgressPercent( healthPercent)
-				
-			if curHealth <= 0:
-				$AnimatedSprite2D.play("death")
-				#$PortalToHome2.visible = true 
-				#TODO: This portal should appear when the human is defeated! 
-				#The skeleton will be able to return home via the portal
-				#When the skeleton goes through the portal, the human should respawn and begin summoning the skeleton again (15 seconds)
-				$workMusic.stop()
-				$DeathCry.play()
-				print("enemy is dead")
-				$AnimatedSprite2D.visible = false
-				player_chase = false
-				global.ShowPortalToHome()
-				$PortalAppear.play()
-				
+		if curHealth <= 0:
+			$AnimatedSprite2D.play("death")
+			#$PortalToHome2.visible = true 
+			#TODO: This portal should appear when the human is defeated! 
+			#The skeleton will be able to return home via the portal
+			#When the skeleton goes through the portal, the human should respawn and begin summoning the skeleton again (15 seconds)
+			$workMusic.stop()
+			$DeathCry.play()
+			print("enemy is dead")
+			$AnimatedSprite2D.visible = false
+			player_chase = false
+			global.ShowPortalToHome()
+			$PortalAppear.play()
+			
 
 func _on_take_damage_cooldown_timeout():
 	can_take_damage = true

@@ -90,6 +90,12 @@ func _process(delta):
 		$txtTimeLeft.text = "[center]Completed: %s[/center]" % questTitle
 		global.questResults.append( "Completed: %s" % questTitle )
 		global.completedQuest += 1
+		var isPoopQuest = self != global.adventureProgress
+		if isPoopQuest:
+			print("requesting poop-cleanup sound")
+			global.shouldPlayPoopCompletionSound = true
+			return
+		
 		print(global.completedQuest)
 		$imgFail.visible = false
 		$imgProgress.visible = false

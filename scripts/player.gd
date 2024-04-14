@@ -252,21 +252,26 @@ func _on_dodgetimer_timeout():
 	
 
 func _on_area_2d_body_entered(_body):
+	print("_on_area_2d_body_entered")
 	self.position.y = firstFloor
 	self.position.x = firstFloorXLeft
 
 func _on_first_floor_body_entered(body):
+	print("_on_first_floor_body_entered")
 	self.position.y = secondFloor
 	self.position.x = secondFloorXRight
 
 func _on_second_floor_body_entered(body):
+	print("_on_second_floor_body_entered")
 	self.position.y = firstFloor
 	self.position.x = firstFloorXRight
 
 func _process(delta):
 	timeSinceLastDodge += delta
 	global.player_dodge = Input.is_action_pressed("dodge")
-	if( global.player_dodge and timeSinceLastDodge > 2):
+	if( global.player_dodge and timeSinceLastDodge > 0.2):
+		print("requesting cant touch sound")
+		global.shouldPlayCantTouch = true
 		$AnimatedSprite2D.play("dodge_attack")
 		$Dodge.play()
 	if( global.player_dodge ):

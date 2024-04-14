@@ -45,10 +45,10 @@ func _on_btn_begin_day_pressed():
 	global.gameTimeLeft = global.gameDuration
 	$Scale/Control/WifeChat.visible = false
 	global.animatedScale.play("RightDownToUp")
-	
+	$DaddyHome.play()
 	
 func trySpawnDogPoop():
-	if( timeUntilNextDogPoop > 0):
+	if( timeUntilNextDogPoop > 0 || global.inDialogue):
 		return
 	timeUntilNextDogPoop = randf_range(7, 20)
 	var newProgressMeter = questPrefab.instantiate()
@@ -66,6 +66,33 @@ func updateHealthDisplay():
 #shows the button after we finish the wife chat
 #called every frame
 func _process(delta):
+	if global.shouldHideBeginPlayBtn:
+		global.shouldHideBeginPlayBtn = false
+		$Scale/Control/WifeChat/btnBeginDay.visible = false
+
+	if global.shouldPlayCantTouch:
+		global.shouldPlayCantTouch = false
+		$CantTouch.play()
+		
+	if global.shouldPlayBGMusic:
+		global.shouldPlayBGMusic = false
+		$workMusic.stop()
+		$Scale/Control/HouseMusic.stop()
+		$MenuMusic.play()
+	
+	if global.shouldPlaySexy:
+		global.shouldPlaySexy = false
+		$Sexy.play()
+	
+	if global.shouldPlayDaddysHome:
+		global.shouldPlayDaddysHome = false
+		$DaddyHome.play()
+		
+	if global.shouldPlayPoopCompletionSound:
+		global.shouldPlayPoopCompletionSound = false
+		$MansGottaDo.play()
+		print("playing poop-cleanup sound")
+	
 	if global.wifeChatFinished:
 		$Scale/Control/WifeChat/btnBeginDay.visible = true
 

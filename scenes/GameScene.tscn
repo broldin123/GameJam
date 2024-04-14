@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://cssdlulhei1cu"]
+[gd_scene load_steps=65 format=3 uid="uid://cssdlulhei1cu"]
 
 [ext_resource type="Script" path="res://scripts/GameScene.gd" id="1_jyku5"]
 [ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://UI/myTheme.tres" id="2_c2duk"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://buk33vgcta34w" path="res://sprites/scalePlate.png" id="4_f0ft4"]
 [ext_resource type="Texture2D" uid="uid://cdstc170pejfo" path="res://sprites/greyHouse.png" id="6_l7q2r"]
 [ext_resource type="Texture2D" uid="uid://6monscsdvgxl" path="res://sprites/skeledog.png" id="7_br60w"]
-[ext_resource type="AudioStream" uid="uid://d0w7uh45q834f" path="res://music/Kevin Macleod  Killers.mp3" id="7_vbukn"]
 [ext_resource type="Texture2D" uid="uid://bij3og8dris3d" path="res://sprites/skeleKid.png" id="8_4m7p8"]
 [ext_resource type="AudioStream" uid="uid://rocxymnpqfkq" path="res://music/Kevin MacLeod [Official] - The Show Must Be Go! - incompetech.com.mp3" id="8_jlg8a"]
 [ext_resource type="Texture2D" uid="uid://8vg20au7sr2m" path="res://sprites/wifeChat.png" id="10_7iv1a"]
@@ -30,6 +29,11 @@
 [ext_resource type="AudioStream" uid="uid://ms3yyj7vk2b" path="res://soundEffects/turd-165629.mp3" id="27_ggtmi"]
 [ext_resource type="AudioStream" uid="uid://br37oyqyu73bu" path="res://soundEffects/the-magical-surprise-141291.mp3" id="27_jbesj"]
 [ext_resource type="AudioStream" uid="uid://bbqlsf30lv1dn" path="res://music/Kevin MacLeod   Pop Goes the Weasel.mp3" id="27_laqrv"]
+[ext_resource type="AudioStream" uid="uid://bqlc3mgrg7skk" path="res://mangottado.wav" id="30_1i3pp"]
+[ext_resource type="AudioStream" uid="uid://di8brp7m5e0if" path="res://daddyHome.wav" id="30_so74t"]
+[ext_resource type="AudioStream" uid="uid://bfqdwqtav7xra" path="res://sexyV2.ogg" id="31_ww0vn"]
+[ext_resource type="AudioStream" uid="uid://34dnx516427n" path="res://cantTouchV2.ogg" id="32_oakb7"]
+[ext_resource type="AudioStream" uid="uid://uje8ijntoqlc" path="res://music/Kevin MacLeod_ Alien Restaurant.mp3" id="32_qdt71"]
 
 [sub_resource type="Animation" id="Animation_r6irv"]
 resource_name = "skeleDog walk cycle"
@@ -1357,11 +1361,8 @@ text = "End Screen"
 
 [node name="HouseMusic" type="AudioStreamPlayer2D" parent="Scale/Control"]
 stream = ExtResource("8_jlg8a")
-volume_db = -30.0
+volume_db = -15.0
 autoplay = true
-
-[node name="WorkMusic" type="AudioStreamPlayer2D" parent="Scale/Control"]
-stream = ExtResource("7_vbukn")
 
 [node name="DebugButtons" type="Control" parent="Scale/Control"]
 visible = false
@@ -1444,22 +1445,38 @@ stream = ExtResource("27_laqrv")
 [node name="Poop" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("27_ggtmi")
 
+[node name="MansGottaDo" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("30_1i3pp")
+volume_db = -10.0
+
+[node name="DaddyHome" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("30_so74t")
+
+[node name="Sexy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("31_ww0vn")
+
+[node name="CantTouch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("32_oakb7")
+
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("32_qdt71")
+volume_db = 10.0
+
 [connection signal="body_entered" from="Scale/ScalePlateRight/Node2D/FirstFloorToBasement/FirstFloorToBasement" to="Scale/ScalePlateRight/Node2D/playerHome" method="_on_first_floor_to_basement_body_entered"]
 [connection signal="body_entered" from="Scale/ScalePlateRight/Node2D/SecondFloor/SecondFloor" to="Scale/ScalePlateRight/Node2D/playerHome" method="_on_second_floor_body_entered"]
-[connection signal="body_entered" from="Scale/ScalePlateRight/Node2D/FirstFloorToSecond/FirstFloor" to="Scale/ScalePlateRight/Node2D/playerHome" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Scale/ScalePlateRight/Node2D/FirstFloorToSecond/FirstFloor" to="Scale/ScalePlateRight/Node2D/playerHome" method="_on_first_floor_body_entered"]
 [connection signal="body_entered" from="Scale/ScalePlateRight/Node2D/Basement/Area2D" to="Scale/ScalePlateRight/Node2D/playerHome" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Scale/ScalePlateLeft/PortalToHome/Area2D" to="Scale/ScalePlateLeft/PortalToHome/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Scale/ScalePlateLeft/PortalToHome/Area2D" to="Scale/ScalePlateLeft/quest_cryptDefense/playerWork" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Scale/ScalePlateLeft/PortalToHome/Area2D" to="Scale/ScalePlateLeft/PortalToHome/Area2D" method="_on_body_exited"]
 [connection signal="timeout" from="Scale/ScalePlateLeft/quest_cryptDefense/SummoningTimer2" to="Scale/ScalePlateLeft/quest_cryptDefense/playerWork" method="_on_summoning_timer_timeout"]
-[connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_btn_main_menu_pressed"]
 [connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Scale/Control/btnEndScreen" to="." method="_on_btn_end_screen_pressed"]
+[connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_btn_main_menu_pressed"]
 [connection signal="pressed" from="Scale/Control/btnEndScreen" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Scale/Control/btnEndScreen" to="." method="_on_btn_end_screen_pressed"]
 [connection signal="gui_input" from="Scale/Control/DebugButtons" to="." method="_on_debug_buttons_gui_input"]
-[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartHome" to="." method="_on_btn_start_home_pressed"]
 [connection signal="pressed" from="Scale/Control/DebugButtons/btnStartHome" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartWork" to="." method="_on_btn_start_work_pressed"]
+[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartHome" to="." method="_on_btn_start_home_pressed"]
 [connection signal="pressed" from="Scale/Control/DebugButtons/btnStartWork" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartWork" to="." method="_on_btn_start_work_pressed"]
 [connection signal="pressed" from="Scale/Control/WifeChat/btnBeginDay" to="." method="_on_btn_begin_day_pressed"]

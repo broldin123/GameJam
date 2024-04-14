@@ -40,7 +40,7 @@ text = "Return to Main Menu"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_e73qv")
-volume_db = 2.0
+volume_db = 10.0
 autoplay = true
 
 [node name="SkeletonThatIsAFighterAndADadHeIsHoldingABabyInOneHandTheOtherHandHolderASword1903656758" type="Sprite2D" parent="."]

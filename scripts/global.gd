@@ -39,6 +39,18 @@ var adventurerNeedsRespawn = false
 
 var shouldBringToEndScene = false
 
+var shouldPlayPoopCompletionSound = false
+
+var shouldPlayDaddysHome = false
+
+var shouldPlaySexy = false
+
+var inDialogue = true
+
+var shouldPlayBGMusic = false
+var shouldPlayCantTouch = false
+var shouldHideBeginPlayBtn = false
+
 func SetPlayerHealthDisplay(newHealthPercent):
 	playerHealthDisplay.text = "[center]Your Health: %s%%[/center]" % newHealthPercent
 
@@ -49,7 +61,9 @@ func ShowPortalToHome():
 func OnSceneLoaded(sceneName):
 	testA = "456"
 	if( sceneName == "GameScene"):
-		SetPlayer(false)
+		shouldPlaySexy = true
+		SetPlayer(false, false)
+		inDialogue = false
 
 
 func PortalToHomeTaken():
@@ -57,6 +71,9 @@ func PortalToHomeTaken():
 	SetPlayer(false)
 
 func EndGame(reason):
+	inDialogue = true
+	shouldPlayBGMusic = true
+	shouldHideBeginPlayBtn = true
 	if reason == "playerDied":
 		playerDiedConvoNeeded = true
 		return
@@ -94,7 +111,7 @@ func StartDialogue(dialogueName):
 	else:
 		print("unknown dialogue requested: ", dialogueName)
 	
-func SetPlayer(isWork):
+func SetPlayer(isWork, playDaddyHome = true):
 	assert(homePlayer != null, "homePlayer is null.")
 	assert(workPlayer != null, "workPlayer is null.")
 	if portalToHome != null:
@@ -109,6 +126,8 @@ func SetPlayer(isWork):
 	else:
 		#homelife mode - normal music
 		animatedScale.play("RightDownToUp")
+		if playDaddyHome:
+			shouldPlayDaddysHome = true
 		
 	if isWorkActive:	
 		#Going to work - add epic fighting music

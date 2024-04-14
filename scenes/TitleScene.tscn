@@ -147,7 +147,7 @@ texture = ExtResource("3_rfvj3")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control"]
 stream = ExtResource("5_qk8ak")
-volume_db = 2.0
+volume_db = 10.0
 autoplay = true
 
 [connection signal="pressed" from="Control/Info/btnBack" to="." method="_on_btn_back_pressed"]
