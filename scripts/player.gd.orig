@@ -13,8 +13,6 @@ var basementHome = 87
 var firstFloor = 50
 var secondFloor = -2.5
 var firstFloorXLeft = -25
-var secondFloorXRight = 52
-var firstFloorXRight = 57
 
 var player_dodge = false
 
@@ -27,9 +25,12 @@ var stayAliveTenSecondsQuest = null
 # Setup function
 func _ready():
 	$AnimatedSprite2D.play("side_idle")
+<<<<<<< HEAD
 	MyGlobals.player = get_tree().get_root()
+=======
 	$"../../../ScalePlateLeft/quest_cryptDefense/playerWork".set_process(false)
 	$"../../../ScalePlateLeft/quest_cryptDefense/playerWork".visible = false
+>>>>>>> origin/main
 
 func _physics_process(delta):
 	player_movement(delta)
@@ -223,14 +224,12 @@ func _on_area_2d_body_entered(_body):
 	
 
 func _on_first_floor_body_entered(body):
-	self.position.y = secondFloor
-	self.position.x = secondFloorXRight
+	self.position.y = firstFloor
 	print(int(self.position.y), "going from first floor to second")
 
 
 func _on_second_floor_body_entered(body):
-	self.position.y = firstFloor
-	self.position.x = firstFloorXRight
+	self.position.y = secondFloor
 	print(int(self.position.y), "going from second floor to first")
 
 func _process(_delta):

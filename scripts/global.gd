@@ -10,3 +10,8 @@ var wifeChatFinished = false
 var questResults = [""]
 var poopNum = 1
 
+var player = null
+
+var playerCurHealth = 100
+var playerMaxHealth = 100
+
