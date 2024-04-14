@@ -14,7 +14,7 @@ var adventurerNum = 1
 var completedQuest = 0
 
 var gameTimeLeft = -1
-var gameDuration = 100
+var gameDuration = 90
 
 var testA = "123"
 var homePlayer = null
@@ -51,6 +51,13 @@ var shouldPlayBGMusic = false
 var shouldPlayCantTouch = false
 var shouldHideBeginPlayBtn = false
 
+var GameScene = null
+var ShouldHideBeginButton = false
+
+var buttonToHide = null
+var workMusic = null
+var homeMusic = null
+
 func SetPlayerHealthDisplay(newHealthPercent):
 	playerHealthDisplay.text = "[center]Your Health: %s%%[/center]" % newHealthPercent
 
@@ -63,7 +70,7 @@ func OnSceneLoaded(sceneName):
 	if( sceneName == "GameScene"):
 		shouldPlaySexy = true
 		SetPlayer(false, false)
-		inDialogue = false
+		ShouldHideBeginButton = false
 
 
 func PortalToHomeTaken():
@@ -71,7 +78,13 @@ func PortalToHomeTaken():
 	SetPlayer(false)
 
 func EndGame(reason):
+	if GameScene != null:
+		GameScene.cleaupForFinalConvo()
+	global.workMusic.stop()
+	global.homeMusic.stop()
+	buttonToHide.visible = false
 	inDialogue = true
+	print("requesting shouldPlayBGMusic")
 	shouldPlayBGMusic = true
 	shouldHideBeginPlayBtn = true
 	if reason == "playerDied":
@@ -85,11 +98,16 @@ func EndGame(reason):
 
 # Tick function
 func _process(_delta):
+	if ShouldHideBeginButton:
+		ShouldHideBeginButton = false
+		if buttonToHide != null:
+			buttonToHide.visible = false
+		
 			
 	if shouldBringToEndScene:
 		shouldBringToEndScene = false
 		get_tree().change_scene_to_file("res://scenes/EndScene.tscn")
-		
+	'''
 	if Input.is_action_just_pressed("toggleWorkHome"):
 		SetPlayer(!isWorkActive)
 	if Input.is_action_just_pressed("wifeStartConvo"):
@@ -98,7 +116,7 @@ func _process(_delta):
 		StartDialogue("adventurer-start")
 	if Input.is_action_just_pressed("wifeEndConvo"):
 		StartDialogue("wife-end-survived")
-	
+	'''
 func StartDialogue(dialogueName):
 	if dialogueName == "wife-start":
 		DialogueManager.show_example_dialogue_balloon(load("res://dialogues/introWifeChat.dialogue"))
@@ -122,10 +140,15 @@ func SetPlayer(isWork, playDaddyHome = true):
 	homePlayer.set_process(!isWorkActive)
 	homePlayer.visible = !isWorkActive
 	if isWorkActive:
+		global.homeMusic.stop()
 		animatedScale.play("RightUpToDown")
+		global.workMusic.play()
 	else:
 		#homelife mode - normal music
 		animatedScale.play("RightDownToUp")
+		if global.workMusic != null:
+			global.workMusic.stop()
+			global.homeMusic.play()
 		if playDaddyHome:
 			shouldPlayDaddysHome = true
 		
@@ -139,5 +162,5 @@ func SetPlayer(isWork, playDaddyHome = true):
 		adventurerNum += 1
 		adventurer.add_child(adventureProgress)
 		adventureProgress.global_position = adventurer.global_position
-		adventureProgress.global_position += Vector2(0, -220)
+		adventureProgress.global_position += Vector2(0, -150)
 	

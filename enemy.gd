@@ -22,7 +22,7 @@ var attackReady = true
 #Dialogue beforehand with adventurer explaining that he wishes to fight you
 #Adventurer should be invisible before first interaction
 
-var timeUntilSummon = 30
+var timeUntilSummon = 20
 
 func _physics_process(_delta):
 	#$Label2.set_text("Summoning: " +str($SummoningTimer2.get_time_left()))
@@ -108,9 +108,10 @@ func _process(delta):
 			
 		if timeUntilSummon < 0:
 			global.SetPlayer(true)
-			$workMusic.play()
-			var min_value = 17.0
-			var max_value = 33.0
+			print("playing work music from enemy")
+			#$workMusic.play()
+			var min_value = 13.0
+			var max_value = 26.0
 			var random_float = randf() * (max_value - min_value) + min_value		
 			timeUntilSummon = random_float
 		

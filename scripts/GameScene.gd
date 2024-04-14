@@ -22,6 +22,10 @@ func _ready():
 	global.OnSceneLoaded("GameScene")
 	global.playerHealthDisplay = $Scale/txtYourHealth
 	global.portalToHome = $Scale/ScalePlateLeft/PortalToHome
+	global.workMusic = $workMusic
+	global.homeMusic = $Scale/Control/HouseMusic
+	global.GameScene = self
+	global.buttonToHide = $Scale/Control/WifeChat/btnBeginDay
 
 func _on_btn_main_menu_pressed():
 	get_tree().change_scene_to_file("res://scenes/TitleScene.tscn")
@@ -31,20 +35,23 @@ func _on_btn_start_home_pressed():
 
 func _on_btn_start_work_pressed():
 	global.animatedScale.play("RightUpToDown")
+	print("playing work music from button")
 	$workMusic.play()
 	
 func _on_btn_end_screen_pressed():
 	get_tree().change_scene_to_file("res://scenes/EndScene.tscn")
 
 func _input(_event):
-	if Input.is_action_just_pressed("toggleDebugButtons"):
-		$Scale/Control/DebugButtons.visible = !$Scale/Control/DebugButtons.visible
+	return
+	#if Input.is_action_just_pressed("toggleDebugButtons"):
+	#	$Scale/Control/DebugButtons.visible = !$Scale/Control/DebugButtons.visible
 
 #hides the wife chat when we push the begin day button
 func _on_btn_begin_day_pressed():
 	global.gameTimeLeft = global.gameDuration
 	$Scale/Control/WifeChat.visible = false
 	global.animatedScale.play("RightDownToUp")
+	global.inDialogue = false
 	$DaddyHome.play()
 	
 func trySpawnDogPoop():
@@ -63,6 +70,12 @@ func updateHealthDisplay():
 	#$Scale/ScalePlateLeft/txtHealth.text = "[center]Health: %s / %s[/center]" % global.playerCurHealth % global.playerMaxHealth
 	return
 
+func cleaupForFinalConvo():
+	$Scale/Control/WifeChat/btnBeginDay.visible = false
+	$workMusic.stop()
+	$Scale/Control/HouseMusic.stop()
+	$MenuMusic.play()
+	
 #shows the button after we finish the wife chat
 #called every frame
 func _process(delta):
@@ -75,6 +88,7 @@ func _process(delta):
 		$CantTouch.play()
 		
 	if global.shouldPlayBGMusic:
+		print("receiving shouldPlayBGMusic")
 		global.shouldPlayBGMusic = false
 		$workMusic.stop()
 		$Scale/Control/HouseMusic.stop()

@@ -46,7 +46,7 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 5, 7, 8.5, 12, 15.8, 16.2, 26, 30.5, 35),
+"times": PackedFloat32Array(0.1, 5, 7, 8.5, 10.5, 15.8, 16.2, 26, 30.5, 32.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-132, 107), Vector2(218, 145), Vector2(-216, 129), Vector2(-111, 77), Vector2(-111, 77), Vector2(191, 77), Vector2(191, -24), Vector2(-30, -17), Vector2(-104, -17), Vector2(-104, -17)]
@@ -1100,7 +1100,6 @@ texture = ExtResource("7_br60w")
 libraries = {
 "": SubResource("AnimationLibrary_lvwot")
 }
-speed_scale = 0.5
 
 [node name="Skelekid" type="Sprite2D" parent="Scale/ScalePlateRight/House"]
 position = Vector2(-53, -18)
@@ -1340,6 +1339,7 @@ offset_bottom = 361.0
 theme = ExtResource("2_c2duk")
 
 [node name="btnMainMenu" type="Button" parent="Scale/Control"]
+visible = false
 layout_mode = 0
 offset_left = 8.0
 offset_top = -27.0
@@ -1351,6 +1351,7 @@ theme = ExtResource("2_c2duk")
 text = "Menu"
 
 [node name="btnEndScreen" type="Button" parent="Scale/Control"]
+visible = false
 layout_mode = 0
 offset_left = 847.0
 offset_top = -31.0
@@ -1408,12 +1409,11 @@ scale = Vector2(1, 4.21429)
 texture = ExtResource("11_jfon1")
 
 [node name="btnBeginDay" type="Button" parent="Scale/Control/WifeChat"]
-visible = false
 layout_mode = 0
-offset_left = 452.0
-offset_top = -102.0
-offset_right = 734.0
-offset_bottom = -46.0
+offset_left = 458.0
+offset_top = -170.0
+offset_right = 740.0
+offset_bottom = -114.0
 text = " Begin Day "
 script = ExtResource("12_ifv8h")
 
@@ -1470,13 +1470,13 @@ volume_db = 10.0
 [connection signal="body_entered" from="Scale/ScalePlateLeft/PortalToHome/Area2D" to="Scale/ScalePlateLeft/quest_cryptDefense/playerWork" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Scale/ScalePlateLeft/PortalToHome/Area2D" to="Scale/ScalePlateLeft/PortalToHome/Area2D" method="_on_body_exited"]
 [connection signal="timeout" from="Scale/ScalePlateLeft/quest_cryptDefense/SummoningTimer2" to="Scale/ScalePlateLeft/quest_cryptDefense/playerWork" method="_on_summoning_timer_timeout"]
-[connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_btn_main_menu_pressed"]
-[connection signal="pressed" from="Scale/Control/btnEndScreen" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Scale/Control/btnEndScreen" to="." method="_on_btn_end_screen_pressed"]
+[connection signal="pressed" from="Scale/Control/btnEndScreen" to="." method="_on_button_pressed"]
 [connection signal="gui_input" from="Scale/Control/DebugButtons" to="." method="_on_debug_buttons_gui_input"]
-[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartHome" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Scale/Control/DebugButtons/btnStartHome" to="." method="_on_btn_start_home_pressed"]
-[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartWork" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartHome" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Scale/Control/DebugButtons/btnStartWork" to="." method="_on_btn_start_work_pressed"]
+[connection signal="pressed" from="Scale/Control/DebugButtons/btnStartWork" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Scale/Control/WifeChat/btnBeginDay" to="." method="_on_btn_begin_day_pressed"]

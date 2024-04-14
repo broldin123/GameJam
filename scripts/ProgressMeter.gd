@@ -18,7 +18,7 @@ var isActive = false
 
 var allowProgress = false
 
-var maxDistToProgress = 70
+var maxDistToProgress = 40
 
 var progressPercentOverride = -1
 
@@ -42,8 +42,16 @@ func _setup(title_, progressTimeReq_, timeLimit_):
 
 func UpdateIsProgressable():
 	var myPos = self.global_position
-	var distToPlayer = myPos.distance_to(global.homePlayer.global_position)
+	
+	#offsetting so its check player center body instead of foot
+	var playerWithOffset = global.homePlayer.global_position + Vector2(0, -50)
+	
+	var distToPlayer = myPos.distance_to(playerWithOffset)
 	#print("CurDistToPlayer: ", distToPlayer)
+	var absDeltaY = abs(myPos.y - playerWithOffset.y)
+	print("absY: ", absDeltaY)
+	print("distToPlayer: ", distToPlayer)
+	
 	allowProgress = distToPlayer < maxDistToProgress && timeTotalProgressRequired != -1
 	$imgProgressInRange.visible = allowProgress
 	$imgProgress.visible = !allowProgress
@@ -62,12 +70,14 @@ func _process(delta):
 		
 	if Input.is_action_pressed("progressQuest") && allowProgress:
 		timeProgressed += delta
-		
-	timeUntilFailed -= delta
-	if(timeUntilFailed < 0):
-		timeUntilFailed = 0
 	
-	$txtTimeLeft.text = "[center]%ss[/center]" % int(timeUntilFailed)
+	if self == global.adventureProgress:
+		$txtTimeLeft.text = ""
+	else:
+		timeUntilFailed -= delta
+		if(timeUntilFailed < 0):
+			timeUntilFailed = 0
+		$txtTimeLeft.text = "[center]%ss[/center]" % int(timeUntilFailed)
 	
 	var curPercentProgress = int( (timeProgressed / timeTotalProgressRequired) * 100 )
 	if progressPercentOverride != -1:
@@ -94,7 +104,6 @@ func _process(delta):
 		if isPoopQuest:
 			print("requesting poop-cleanup sound")
 			global.shouldPlayPoopCompletionSound = true
-			return
 		
 		print(global.completedQuest)
 		$imgFail.visible = false
