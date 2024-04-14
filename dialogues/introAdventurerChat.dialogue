@@ -1,0 +1,9 @@
+~ start
+Adventurer: Hark! I am Sir Oodles, noble knight of these lands! I have summoned you here to slay you, foul beast!
+- Sir I was literally just minding my own business
+	Adventurer: What ho! That is exactly what a devil's incarnation might be expected to say!
+- Could you not?
+	Adventurer: Actually no! I must! I am here to defend the people!
+- Good luck with that! => END
+Adventurer: Enough chitter chatter brittle-bones! It is time for you to die! 
+=> END

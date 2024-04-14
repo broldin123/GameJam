@@ -28,6 +28,22 @@ func OnSceneLoaded(sceneName):
 func _process(_delta):
 	if Input.is_action_just_pressed("toggleWorkHome"):
 		SetPlayer(!isWorkActive)
+	if Input.is_action_just_pressed("wifeStartConvo"):
+		StartDialogue("wife-start")
+	if Input.is_action_just_pressed("adventurerStartConvo"):
+		StartDialogue("adventurer-start")
+	if Input.is_action_just_pressed("wifeEndConvo"):
+		StartDialogue("wife-end")
+	
+func StartDialogue(dialogueName):
+	if dialogueName == "wife-start":
+		DialogueManager.show_example_dialogue_balloon(load("res://dialogues/introWifeChat.dialogue"))
+	elif dialogueName == "adventurer-start":
+		DialogueManager.show_example_dialogue_balloon(load("res://dialogues/introAdventurerChat.dialogue"))
+	elif dialogueName == "wife-end":
+		DialogueManager.show_example_dialogue_balloon(load("res://dialogues/exitWifeChat.dialogue"))
+	else:
+		print("unknown dialogue requested: ", dialogueName)
 	
 func SetPlayer(isWork):
 	assert(homePlayer != null, "homePlayer is null.")

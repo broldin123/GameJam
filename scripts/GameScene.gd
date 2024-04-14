@@ -11,7 +11,7 @@ func _ready():
 	global.wifeChatFinished = false
 	$Scale/Control/WifeChat/btnBeginDay.visible = false
 	$Scale/Control/WifeChat.visible = true
-	DialogueManager.show_example_dialogue_balloon(load("res://dialogues/introWifeChat.dialogue"))
+	global.StartDialogue("wife-start")
 	$Scale/ScalePlateRight/House/Skeledog/animSkeleDog.play("skeleDog walk cycle")
 	global.animatedScale = $Scale/animScaleUpDown
 	global.OnSceneLoaded("GameScene")

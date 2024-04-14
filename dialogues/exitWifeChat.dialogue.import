@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://ilf7q2653usp"
+path="res://.godot/imported/exitWifeChat.dialogue-00c894a7ea3e1881b44c0eb33010626c.tres"
+
+[deps]
+
+source_file="res://dialogues/exitWifeChat.dialogue"
+dest_files=["res://.godot/imported/exitWifeChat.dialogue-00c894a7ea3e1881b44c0eb33010626c.tres"]
+
+[params]
+
+defaults=true
