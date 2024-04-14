@@ -1080,7 +1080,7 @@ scale = Vector2(3.17839, 1.77781)
 texture = ExtResource("4_f0ft4")
 
 [node name="CryptV2" type="Sprite2D" parent="Scale/ScalePlateLeft"]
-position = Vector2(-5.66325, 6.18738)
+position = Vector2(-2.51699, 19.1246)
 scale = Vector2(0.058, 0.104)
 texture = ExtResource("3_nbwq7")
 

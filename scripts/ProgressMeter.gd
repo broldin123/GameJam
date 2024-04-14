@@ -20,6 +20,8 @@ var allowProgress = false
 
 var maxDistToProgress = 70
 
+var progressPercentOverride = -1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#_setup("Do it!", 3, 2)
@@ -42,9 +44,14 @@ func UpdateIsProgressable():
 	var myPos = self.global_position
 	var distToPlayer = myPos.distance_to(global.homePlayer.global_position)
 	#print("CurDistToPlayer: ", distToPlayer)
-	allowProgress = distToPlayer < maxDistToProgress
+	allowProgress = distToPlayer < maxDistToProgress && timeTotalProgressRequired != -1
 	$imgProgressInRange.visible = allowProgress
 	$imgProgress.visible = !allowProgress
+
+func SetProgressPercent( newProgressPercent ):
+	print("SetProgressPercent: ", newProgressPercent)
+	progressPercentOverride = newProgressPercent
+	return
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -63,9 +70,17 @@ func _process(delta):
 	$txtTimeLeft.text = "[center]%ss[/center]" % int(timeUntilFailed)
 	
 	var curPercentProgress = int( (timeProgressed / timeTotalProgressRequired) * 100 )
+	if progressPercentOverride != -1:
+		curPercentProgress = progressPercentOverride
+		
+	if curPercentProgress > 100:
+		curPercentProgress = 100
+		
+	print("curPercentProgress: ", curPercentProgress, " (override is: ", progressPercentOverride, ")")
+	print("timeTotalProgressRequired: ", timeTotalProgressRequired)
 	$txtProgress.text = "[center]%s%%[/center]" % curPercentProgress
 	
-	if(curPercentProgress > 100):
+	if(curPercentProgress >= 100):
 		isActive = false
 		$txtTitle.text = ""
 		$txtProgress.text = ""
@@ -78,7 +93,7 @@ func _process(delta):
 		await get_tree().create_timer(3).timeout
 		$".".queue_free()
 	
-	if(timeUntilFailed == 0):
+	if(timeUntilFailed <= 0):
 		isActive = false
 		$txtTitle.text = ""
 		$txtProgress.text = ""

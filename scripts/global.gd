@@ -10,14 +10,20 @@ var isWorkActive = false
 
 var questResults = [""]
 var poopNum = 1
+var adventurerNum = 1
 
 var testA = "123"
 var homePlayer = null
 var workPlayer = null
 var animatedScale = null
 
+var adventurer = null
+var adventureProgress = null
+
 var playerCurHealth = 100
 var playerMaxHealth = 100
+
+var questPrefab = load("res://scenes/progress_meter.tscn")
 
 func OnSceneLoaded(sceneName):
 	testA = "456"
@@ -57,4 +63,16 @@ func SetPlayer(isWork):
 		animatedScale.play("RightUpToDown")
 	else:
 		animatedScale.play("RightDownToUp")
+		
+	if isWorkActive:	
+		adventureProgress = questPrefab.instantiate()
+		var timeLimit = 30 - (adventurerNum * 5);
+		if( timeLimit < 10):
+			timeLimit = timeLimit
+		
+		adventureProgress._setup("Defeat Adventurer #%s" % adventurerNum, -1, timeLimit)
+		adventurerNum += 1
+		adventurer.add_child(adventureProgress)
+		adventureProgress.global_position = adventurer.global_position
+		adventureProgress.global_position += Vector2(0, -220)
 	

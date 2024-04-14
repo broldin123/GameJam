@@ -5,8 +5,8 @@ var player_chase = false
 var player = null
 
 
-var totalHealth = 2
-var health = 2
+var totalHealth = 5
+var health = 5
 var player_inattack_zone = false
 var can_take_damage = true
 
@@ -16,14 +16,20 @@ var can_take_damage = true
 #Adventurer should be invisible before first interaction
 
 func _physics_process(_delta):
-	$Label2.set_text("Summoning: " +str($SummoningTimer2.get_time_left()))
+	#$Label2.set_text("Summoning: " +str($SummoningTimer2.get_time_left()))
+	$Label2.set_text("")
 	deal_with_damage()
 	$PortalToHome2.visible = false 
 	$PortalToHome2.position.y = 12
 	$PortalToHome2.position.x = -10
 	
 	if player_chase: #TODO: The human shouldn't be on top of the skeleton once the human catches the skeleton
-		position += (player.position - position)/speed
+		var distToAttack = 13
+		var distToPlayer = player.position.distance_to(position)
+		#print("Dist to player: ", distToPlayer)
+		
+		if distToPlayer > distToAttack:
+			position += (player.position - position)/speed
 		
 		if position.x >= 69:
 			position.x = 69
@@ -34,11 +40,12 @@ func _physics_process(_delta):
 		#if position.x = player.position.x:
 		#	position.x
 		
-		if player_inattack_zone == true:
-			$AnimatedSprite2D.play("side_attack")
-		else:
-			$AnimatedSprite2D.play("walk")
-		
+		if global.isWorkActive:
+			if player_inattack_zone == true:
+				$AnimatedSprite2D.play("side_attack")
+			else:
+				$AnimatedSprite2D.play("walk")
+			
 		if(player.position.x - position.x <0):
 			$AnimatedSprite2D.flip_h = true
 		else:
@@ -49,7 +56,8 @@ func _physics_process(_delta):
 		
 		
 
-
+func _ready():
+	global.adventurer = self;
 
 func _on_detection_area_body_entered(body):
 	player = body
@@ -79,7 +87,11 @@ func deal_with_damage():
 			health = health - 1
 			$take_damage_cooldown.start()
 			can_take_damage = false
-			print("hero health = ", health, " out of ", totalHealth)
+			var healthPercent = 100 - (float(health) / totalHealth) * 100
+			print("hero health = ", health, " out of ", totalHealth, " - Percent: ", healthPercent)
+			
+			assert(global.adventureProgress != null, "global.adventureProgress is null.")
+			global.adventureProgress.SetProgressPercent( healthPercent)
 			if health <= 0:
 				$AnimatedSprite2D.play("death")
 				$PortalToHome2.visible = true 

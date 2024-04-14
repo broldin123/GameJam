@@ -46,7 +46,7 @@ func trySpawnDogPoop():
 	timeUntilNextDogPoop = randf_range(7, 20)
 	var newProgressMeter = questPrefab.instantiate()
 	print("poop %s spawned!" % global.poopNum)
-	newProgressMeter._setup("Clean Poop %s" % global.poopNum, 2, 10)
+	newProgressMeter._setup("Clean Poop #%s" % global.poopNum, 2, 10)
 	global.poopNum += 1
 	$Scale/ScalePlateRight/House/Skeledog.get_parent().add_child(newProgressMeter)
 	newProgressMeter.global_position = $Scale/ScalePlateRight/House/Skeledog.global_position
