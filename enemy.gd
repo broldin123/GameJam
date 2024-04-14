@@ -15,6 +15,12 @@ func _physics_process(_delta):
 	if player_chase:
 		position += (player.position - position)/speed
 		
+		if position.x >= 69:
+			position.x = 69
+		
+		if position.x <=-60:
+			position.x = -60
+		
 		if player_inattack_zone == true:
 			$AnimatedSprite2D.play("side_attack")
 		else:

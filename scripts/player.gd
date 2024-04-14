@@ -15,10 +15,11 @@ var secondFloor = -2.5
 var firstFloorXLeft = -25
 var secondFloorXRight = 52
 var firstFloorXRight = 57
+var basementHomeX = -41 
 
 var player_dodge = false
 
-const speed = 150
+var speed = 150
 var current_dir = "none"
 
 var questPrefab = load("res://scenes/progress_meter.tscn")
@@ -59,6 +60,17 @@ func spawn_player_lose_quest(_delta):
 func player_movement(_delta):
 	var _dir = current_dir
 	var anim = $AnimatedSprite2D
+	if global.player_dodge == true:
+		velocity.x = 0
+		velocity.y = 0
+		
+	if position.x >= 87:
+			position.x = 87
+	
+	#if position.y == secondFloor and position.x == -38:
+	#	position.x = -38
+	if position.x <=-67:
+			position.x = -67
 	if Input.is_action_pressed("ui_right"):
 		current_dir = "right"
 		play_anim(1)
@@ -240,3 +252,4 @@ func _process(_delta):
 
 func _on_first_floor_to_basement_body_entered(body):
 	self.position.y = basementHome
+	self.position.x = basementHomeX
