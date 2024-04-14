@@ -1230,6 +1230,16 @@ theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
 text = "[center]Your Health: 100%[/center]"
 
+[node name="txtTimeUntilEndOfDay" type="RichTextLabel" parent="Scale"]
+offset_left = 229.0
+offset_top = -285.0
+offset_right = 544.0
+offset_bottom = -253.0
+theme_override_fonts/normal_font = ExtResource("19_81vve")
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "[center]Time until end of day: 120s[/center]"
+
 [node name="Control" type="Control" parent="Scale"]
 layout_mode = 3
 anchors_preset = 0

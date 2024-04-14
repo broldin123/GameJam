@@ -1,0 +1,6 @@
+~ start
+Patella: Oh no! My husband are you okay?
+- Yes I will be okay, I was wounded but I will recover my love.
+- What does it look like? I've got no skin!
+set global.shouldBringToEndScene = true
+=> END

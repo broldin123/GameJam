@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://ce1kokx67tmc2"
+path="res://.godot/imported/exitWifeChatIfDead.dialogue-1b8123b08fb550523a8287555ff39d0e.tres"
+
+[deps]
+
+source_file="res://dialogues/exitWifeChatIfDead.dialogue"
+dest_files=["res://.godot/imported/exitWifeChatIfDead.dialogue-1b8123b08fb550523a8287555ff39d0e.tres"]
+
+[params]
+
+defaults=true

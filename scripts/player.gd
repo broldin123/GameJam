@@ -47,6 +47,7 @@ func _physics_process(delta):
 		health = 0
 		print("player has been killed")
 		self.queue_free()
+		global.EndGame("playerDied")
 		
 
 func spawn_player_lose_quest(_delta):

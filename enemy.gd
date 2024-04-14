@@ -9,6 +9,7 @@ var totalHealth = 5
 var curHealth = 5
 var player_inattack_zone = false
 var can_take_damage = true
+var lastTimeUntilSummonPrinted = 0
 
 #TODO: This scene automatically starts when you play the game
 #The game should begin with the human summoning you
@@ -55,12 +56,19 @@ func _physics_process(_delta):
 		$AnimatedSprite2D.play("idle")
 
 func _process(delta):
+	if global.gameTimeLeft == 0:
+		return	
+	
 	if !visible:
 		$Label2.set_text("")
 	
 	if visible and !global.isWorkActive:
 		timeUntilSummon -= delta
-		print( "TimeUntilSummon: ", timeUntilSummon)
+		
+		if int(timeUntilSummon) != lastTimeUntilSummonPrinted:
+			print( "TimeUntilSummon: ", int(timeUntilSummon))
+			lastTimeUntilSummonPrinted = int(timeUntilSummon)
+		
 		if timeUntilSummon < 11 and timeUntilSummon > 0:
 			$Label2.set_text("Summoning: " + str(int(timeUntilSummon)) )
 		else:

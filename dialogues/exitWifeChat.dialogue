@@ -1,5 +1,7 @@
 ~ start
 Patella: Good evening my love how was your day without me?
-- Wonderful! I did not miss you at all.
+- Wonderful! The dog was not much trouble.
 - Tragic, I felt so alone.
+set global.shouldBringToEndScene = true
 => END
+

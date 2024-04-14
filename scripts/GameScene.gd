@@ -41,8 +41,10 @@ func _input(_event):
 
 #hides the wife chat when we push the begin day button
 func _on_btn_begin_day_pressed():
+	global.gameTimeLeft = global.gameDuration
 	$Scale/Control/WifeChat.visible = false
 	global.animatedScale.play("RightDownToUp")
+	
 	
 func trySpawnDogPoop():
 	if( timeUntilNextDogPoop > 0):
@@ -62,10 +64,38 @@ func updateHealthDisplay():
 #shows the button after we finish the wife chat
 #called every frame
 func _process(delta):
+	if global.wifeChatFinished:
+		$Scale/Control/WifeChat/btnBeginDay.visible = true
+
+	if global.playerSurvivedConvoNeeded:
+		global.playerSurvivedConvoNeeded = false
+		global.StartDialogue("wife-end-survived")
+		$Scale/Control/WifeChat.visible = true
+		$Scale/Control/WifeChat/btnBeginDay.visible = false
+		return
+	
+	if global.playerDiedConvoNeeded:
+		global.playerDiedConvoNeeded = false
+		global.StartDialogue("wife-end-dead")
+		$Scale/Control/WifeChat.visible = true
+		$Scale/Control/WifeChat/btnBeginDay.visible = false
+		return
+	
+	if global.gameTimeLeft <= 0:
+		return	
+	
+	var oldGameTime = global.gameTimeLeft
+	global.gameTimeLeft -= delta
+	#print("oldGameTime: ", oldGameTime, " NewGameTime: ", global.gameTimeLeft)
+	
+	$Scale/txtTimeUntilEndOfDay.text = "[center]Time until end of day: %ss[/center]" % int(global.gameTimeLeft)
+	if global.gameTimeLeft < 0:
+		#print("GameTimeExpired: ", global.gameTimeLeft)
+		global.gameTimeLeft = 0
+		global.EndGame("timeFinished")
+	
 	timeUntilNextDogPoop -= delta
 	updateHealthDisplay()
 	trySpawnDogPoop()
-	if global.wifeChatFinished:
-		$Scale/Control/WifeChat/btnBeginDay.visible = true
 		
 	
