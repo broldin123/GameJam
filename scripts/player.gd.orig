@@ -25,9 +25,12 @@ var stayAliveTenSecondsQuest = null
 # Setup function
 func _ready():
 	$AnimatedSprite2D.play("side_idle")
+<<<<<<< HEAD
 	MyGlobals.player = get_tree().get_root()
+=======
 	$"../../../ScalePlateLeft/quest_cryptDefense/playerWork".set_process(false)
 	$"../../../ScalePlateLeft/quest_cryptDefense/playerWork".visible = false
+>>>>>>> origin/main
 
 func _physics_process(delta):
 	player_movement(delta)

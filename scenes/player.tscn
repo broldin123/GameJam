@@ -435,6 +435,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ia0nc"]
 radius = 6.25
+height = 19.2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d30j7"]
 radius = 12.6491
@@ -453,7 +454,7 @@ animation = &"dodge_attack"
 frame_progress = 0.332886
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -14)
+position = Vector2(0, -8.8)
 shape = SubResource("CapsuleShape2D_ia0nc")
 
 [node name="player_hitbox" type="Area2D" parent="."]

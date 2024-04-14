@@ -3,6 +3,8 @@ extends Node2D
 var timeUntilNextDogPoop = 4
 var questPrefab = load("res://scenes/progress_meter.tscn")
 
+var isWorkPlayer = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("Starting game scene")

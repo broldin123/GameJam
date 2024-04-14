@@ -196,9 +196,11 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
 position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_4lr5g")
+disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_o0toe")
+disabled = true
 
 [node name="take_damage_cooldown" type="Timer" parent="."]
 
@@ -208,6 +210,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hitbox"]
 shape = SubResource("CircleShape2D_1pgq6")
+disabled = true
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
