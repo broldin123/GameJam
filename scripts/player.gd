@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var enemy_inattack_range = false
-var enemy_attack_cooldown = true
+#var enemy_attack_cooldown = true
 var player_dodge_cooldown = true
 var health = 100
 var totalHealth = 100
@@ -26,6 +26,8 @@ var current_dir = "none"
 var questPrefab = load("res://scenes/progress_meter.tscn")
 var stayAliveTenSecondsQuest = null
 
+var timeSinceLastDodge = 0
+
 # Setup function
 func _ready():
 	$AnimatedSprite2D.play("side_idle")
@@ -38,7 +40,7 @@ func _ready():
 
 func _physics_process(delta):
 	player_movement(delta)
-	enemy_attack()
+	#enemy_attack()
 	attack()
 	#dodge()
 	
@@ -174,33 +176,43 @@ func _on_player_hitbox_body_exited(body):
 func enemy_attack():
 	var anim = $AnimatedSprite2D
 	var dir = current_dir
-	if global.isWorkActive and enemy_inattack_range and enemy_attack_cooldown == true and global.player_dodge == false:
+	
+	if global.player_dodge == false:
 		health = health - enemyAttackDamage
-		enemy_attack_cooldown = false
+		#enemy_attack_cooldown = false
 		$attack_cooldown.start()
 		print("skeleton health = ", health, " out of ", totalHealth)
 		global.SetPlayerHealthDisplay(float(health) / totalHealth * 100)
-	elif Input.is_action_just_pressed("dodge") and global.player_dodge == false:
-		if dir == "right":
-			$AnimatedSprite2D.flip_h = false
-			anim.play("dodge_attack")
-			global.player_dodge = true
-			player_dodge_cooldown = false
-			$dodgetimer.start()
-			print("player dodged!")
-		if dir == "left":
-			$AnimatedSprite2D.flip_h = true
-			anim.play("dodge_attack")
-			global.player_dodge = true
-			player_dodge_cooldown = false
-			$dodgetimer.start()
-			print("player dodged!")
+	
+	#if global.isWorkActive and enemy_inattack_range and enemy_attack_cooldown == true and global.player_dodge == false:
+		#health = health - enemyAttackDamage
+		#enemy_attack_cooldown = false
+		#$attack_cooldown.start()
+		#print("skeleton health = ", health, " out of ", totalHealth)
+		#global.SetPlayerHealthDisplay(float(health) / totalHealth * 100)
+	#if Input.is_action_pressed("dodge"):
+#		if dir == "right":
+#			$AnimatedSprite2D.flip_h = false
+#			anim.play("dodge_attack")
+#			global.player_dodge = true
+#			player_dodge_cooldown = false
+#			#$dodgetimer.start()
+#			print("player dodged!")
+#		if dir == "left":
+#			$AnimatedSprite2D.flip_h = true
+#			anim.play("dodge_attack")
+#			global.player_dodge = true
+#			player_dodge_cooldown = false
+#			#$dodgetimer.start()
+#			print("player dodged!")
+#	else:
+#		global.player_dodge = false
 
 
 
 
-func _on_attack_cooldown_timeout():
-	enemy_attack_cooldown = true
+#func _on_attack_cooldown_timeout():
+#	enemy_attack_cooldown = true
 	
 func attack(): 
 	var dir = current_dir
@@ -248,9 +260,14 @@ func _on_second_floor_body_entered(body):
 	self.position.y = firstFloor
 	self.position.x = firstFloorXRight
 
-func _process(_delta):
-	pass
-
+func _process(delta):
+	timeSinceLastDodge += delta
+	global.player_dodge = Input.is_action_pressed("dodge")
+	if( global.player_dodge and timeSinceLastDodge > 2):
+		$AnimatedSprite2D.play("dodge_attack")
+	if( global.player_dodge ):
+		timeSinceLastDodge = 0
+	
 
 func _on_first_floor_to_basement_body_entered(body):
 	self.position.y = basementHome

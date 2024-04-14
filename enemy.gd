@@ -11,6 +11,11 @@ var player_inattack_zone = false
 var can_take_damage = true
 var lastTimeUntilSummonPrinted = 0
 
+var cooldownDurationMax = 2.5
+var cooldownDurationMin = 1
+var cooldownRemaining = 0
+var attackReady = true
+
 #TODO: This scene automatically starts when you play the game
 #The game should begin with the human summoning you
 #Dialogue beforehand with adventurer explaining that he wishes to fight you
@@ -31,7 +36,7 @@ func _physics_process(_delta):
 		var distToPlayer = global.workPlayer.position.distance_to(position)
 		#print("Dist to player: ", distToPlayer)
 		
-		if distToPlayer > distToAttack:
+		if distToPlayer > distToAttack && cooldownRemaining == 0:
 			position += (global.workPlayer.position - position)/speed
 		
 		if position.x >= 69:
@@ -43,9 +48,11 @@ func _physics_process(_delta):
 		#if position.x = global.workPlayer.position.x:
 		#	position.x
 		
-		if player_inattack_zone == true:
+		if attackReady and distToPlayer <= distToAttack:
 			$AnimatedSprite2D.play("side_attack")
-		else:
+			global.workPlayer.enemy_attack()
+			resetAttackCooldown()
+		elif cooldownRemaining == 0:
 			$AnimatedSprite2D.play("walk")
 			
 		if(global.workPlayer.position.x - position.x <0):
@@ -55,9 +62,25 @@ func _physics_process(_delta):
 	else:
 		$AnimatedSprite2D.play("idle")
 
+# Generate a random float between min_value and max_value
+func random_float(min_value: float, max_value: float) -> float:
+	return randf() * (max_value - min_value) + min_value
+
+func resetAttackCooldown():
+	attackReady = false
+	var random_number = random_float(cooldownDurationMin, cooldownDurationMax)
+	cooldownRemaining = random_number
+
 func _process(delta):
+	print("AttackCooldown: ", cooldownRemaining)
 	if global.gameTimeLeft == 0:
 		return	
+	
+	if !attackReady:
+		cooldownRemaining -= delta
+		if cooldownRemaining <= 0:
+			cooldownRemaining = 0
+			attackReady = true
 	
 	if !visible:
 		$Label2.set_text("")

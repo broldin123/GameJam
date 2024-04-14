@@ -13,7 +13,7 @@ var poopNum = 1
 var adventurerNum = 1
 
 var gameTimeLeft = -1
-var gameDuration = 120
+var gameDuration = 100
 
 var testA = "123"
 var homePlayer = null
