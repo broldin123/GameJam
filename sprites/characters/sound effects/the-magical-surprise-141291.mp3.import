@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dsnpdsxtwx38o"
+path="res://.godot/imported/the-magical-surprise-141291.mp3-e07065eb63bc0476ed23eb282896f213.mp3str"
+
+[deps]
+
+source_file="res://sprites/characters/sound effects/the-magical-surprise-141291.mp3"
+dest_files=["res://.godot/imported/the-magical-surprise-141291.mp3-e07065eb63bc0476ed23eb282896f213.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

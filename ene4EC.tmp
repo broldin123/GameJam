@@ -1,9 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://bvmxlem0gfsp6"]
+[gd_scene load_steps=27 format=3 uid="uid://bvmxlem0gfsp6"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_586o6"]
 [ext_resource type="Texture2D" uid="uid://dnmj0rd8jnpo3" path="res://sprites/characters/dcdm8qc-85787558-abc9-4fde-8951-ccc55d926ed3.png" id="3_egy2l"]
 [ext_resource type="Texture2D" uid="uid://dpg8boy2byjf2" path="res://sprites/characters/player.png" id="3_ff5ns"]
-[ext_resource type="Texture2D" uid="uid://10ptdddshelw" path="res://sprites/characters/pdTP5o.png" id="4_2vcuy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x76wr"]
 atlas = ExtResource("3_ff5ns")
@@ -179,9 +178,6 @@ height = 10.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_1pgq6"]
 radius = 17.4642
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ejnpk"]
-radius = 10.0498
-
 [node name="enemy" type="CharacterBody2D" groups=["Enemy"]]
 scale = Vector2(3, 3)
 script = ExtResource("1_586o6")
@@ -217,32 +213,6 @@ shape = SubResource("CircleShape2D_1pgq6")
 
 [node name="respawn_Enemy_Timer" type="Timer" parent="."]
 wait_time = 3.0
-one_shot = true
-
-[node name="BeginAttackRespawn" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
-[node name="Label2" type="Label" parent="."]
-offset_left = -4.0
-offset_top = -108.0
-offset_right = 36.0
-offset_bottom = -85.0
-visible_characters = 13
-
-[node name="SummoningTimer2" type="Timer" parent="."]
-wait_time = 16.0
-
-[node name="PortalToHome2" type="Sprite2D" parent="."]
-position = Vector2(46.3333, -3.66667)
-scale = Vector2(0.130951, 0.131198)
-texture = ExtResource("4_2vcuy")
-
-[node name="Area2D" type="Area2D" parent="PortalToHome2"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PortalToHome2/Area2D"]
-scale = Vector2(7.81591, -4.25078)
-shape = SubResource("CapsuleShape2D_ejnpk")
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
@@ -250,4 +220,3 @@ shape = SubResource("CapsuleShape2D_ejnpk")
 [connection signal="body_entered" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_entered"]
 [connection signal="body_exited" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_exited"]
 [connection signal="timeout" from="respawn_Enemy_Timer" to="." method="_on_respawn_enemy_timer_timeout"]
-[connection signal="timeout" from="BeginAttackRespawn" to="." method="_on_begin_attack_respawn_timeout"]

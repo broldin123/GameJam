@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c2eufwdajdb68"
+path="res://.godot/imported/hmmmm-male-84479.mp3-a0a3f600134c6a267e6b7cc3a3138ad0.mp3str"
+
+[deps]
+
+source_file="res://sprites/characters/sound effects/hmmmm-male-84479.mp3"
+dest_files=["res://.godot/imported/hmmmm-male-84479.mp3-a0a3f600134c6a267e6b7cc3a3138ad0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

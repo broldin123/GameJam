@@ -67,8 +67,8 @@ func player_movement(_delta):
 		velocity.x = 0
 		velocity.y = 0
 		
-	if position.x >= 87:
-			position.x = 87
+	if position.x >= 84:
+			position.x = 84
 	
 	if position.x <= -31 and position.y <=3:
 		position.x = -31
@@ -135,7 +135,7 @@ func play_anim(movement):
 			anim.play("back_walk")
 		elif movement == 0:
 			if attack_ip == false:
-				anim.play("back_idle")
+				anim.play("side_idle")
 
 func player():
 	pass
@@ -236,25 +236,27 @@ func _on_dodgetimer_timeout():
 func _on_area_2d_body_entered(_body):
 	self.position.y = firstFloor
 	self.position.x = firstFloorXLeft
-	
 
 func _on_first_floor_body_entered(body):
 	self.position.y = secondFloor
 	self.position.x = secondFloorXRight
-	print(int(self.position.y), "going from first floor to second")
-
 
 func _on_second_floor_body_entered(body):
 	self.position.y = firstFloor
 	self.position.x = firstFloorXRight
-	print(int(self.position.y), "going from second floor to first")
 
 func _process(_delta):
-	print(int(self.position.y), "is your current y position!")
-	print(int(self.position.x), "is your current x position!")
-	return
+	pass
 
 
 func _on_first_floor_to_basement_body_entered(body):
 	self.position.y = basementHome
 	self.position.x = basementHomeX
+	
+	
+
+
+func _on_summoning_timer_timeout():
+	global.workPlayer = self
+	$"../../../ScalePlateLeft/quest_cryptDefense/SummoningTimer".start()
+	print("Summoning!")

@@ -5,6 +5,9 @@ var questPrefab = load("res://scenes/progress_meter.tscn")
 
 var isWorkPlayer = false
 
+#TODO: The game needs to have an endstate - maybe after 3 minutes that triggers the conversation with the wife and the report card
+#TODO: Kids running around house? Maybe one other errand besides dog?
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("Starting game scene")
@@ -60,3 +63,5 @@ func _process(delta):
 	trySpawnDogPoop()
 	if global.wifeChatFinished:
 		$Scale/Control/WifeChat/btnBeginDay.visible = true
+		
+	

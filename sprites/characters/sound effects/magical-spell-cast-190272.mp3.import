@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://v01lrrgv5d22"
+path="res://.godot/imported/magical-spell-cast-190272.mp3-ae5fff4d96a238a3313ddc9646d4d253.mp3str"
+
+[deps]
+
+source_file="res://sprites/characters/sound effects/magical-spell-cast-190272.mp3"
+dest_files=["res://.godot/imported/magical-spell-cast-190272.mp3-ae5fff4d96a238a3313ddc9646d4d253.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
