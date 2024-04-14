@@ -16,8 +16,12 @@ func _ready():
 	$Scale/Control/WifeChat.visible = true
 	global.StartDialogue("wife-start")
 	$Scale/ScalePlateRight/House/Skeledog/animSkeleDog.play("skeleDog walk cycle")
+	$Scale/ScalePlateRight/House/Skelekid/animSkeleKid.play("skeleKid walk cycle")
+	$Scale/ScalePlateRight/House/Skelekid2/animSkeleKid2.play("skeleKid 2 walk cycle")
 	global.animatedScale = $Scale/animScaleUpDown
 	global.OnSceneLoaded("GameScene")
+	global.playerHealthDisplay = $Scale/txtYourHealth
+	global.portalToHome = $Scale/ScalePlateLeft/PortalToHome
 
 func _on_btn_main_menu_pressed():
 	get_tree().change_scene_to_file("res://scenes/TitleScene.tscn")

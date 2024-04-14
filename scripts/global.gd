@@ -24,11 +24,27 @@ var playerCurHealth = 100
 var playerMaxHealth = 100
 
 var questPrefab = load("res://scenes/progress_meter.tscn")
+var playerHealthDisplay = null
+
+var portalToHome = null
+
+var adventurerNeedsRespawn = false
+
+func SetPlayerHealthDisplay(newHealthPercent):
+	playerHealthDisplay.text = "[center]Your Health: %s%%[/center]" % newHealthPercent
+
+func ShowPortalToHome():
+	portalToHome.visible = true
+	return
 
 func OnSceneLoaded(sceneName):
 	testA = "456"
 	if( sceneName == "GameScene"):
 		SetPlayer(false)
+
+func PortalToHomeTaken():
+	adventurerNeedsRespawn = true
+	SetPlayer(false)
 
 # Tick function
 func _process(_delta):
@@ -54,6 +70,8 @@ func StartDialogue(dialogueName):
 func SetPlayer(isWork):
 	assert(homePlayer != null, "homePlayer is null.")
 	assert(workPlayer != null, "workPlayer is null.")
+	if portalToHome != null:
+		portalToHome.visible = false
 	isWorkActive = isWork
 	workPlayer.set_process(isWorkActive)
 	workPlayer.visible = isWorkActive

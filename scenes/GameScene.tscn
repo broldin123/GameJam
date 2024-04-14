@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cssdlulhei1cu"]
+[gd_scene load_steps=49 format=3 uid="uid://cssdlulhei1cu"]
 
 [ext_resource type="Script" path="res://scripts/GameScene.gd" id="1_jyku5"]
 [ext_resource type="Theme" uid="uid://5hth02f35blx" path="res://UI/myTheme.tres" id="2_c2duk"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cdstc170pejfo" path="res://sprites/greyHouse.png" id="6_l7q2r"]
 [ext_resource type="Texture2D" uid="uid://6monscsdvgxl" path="res://sprites/skeledog.png" id="7_br60w"]
 [ext_resource type="AudioStream" uid="uid://d0w7uh45q834f" path="res://music/Kevin Macleod  Killers.mp3" id="7_vbukn"]
+[ext_resource type="Texture2D" uid="uid://bij3og8dris3d" path="res://sprites/skeleKid.png" id="8_4m7p8"]
 [ext_resource type="AudioStream" uid="uid://rocxymnpqfkq" path="res://music/Kevin MacLeod [Official] - The Show Must Be Go! - incompetech.com.mp3" id="8_jlg8a"]
 [ext_resource type="Texture2D" uid="uid://8vg20au7sr2m" path="res://sprites/wifeChat.png" id="10_7iv1a"]
 [ext_resource type="Texture2D" uid="uid://cww4x3xttvdgg" path="res://sprites/blankBubble.png" id="11_jfon1"]
@@ -20,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cxfpjvfgypv5a" path="res://sprites/tilesets/floors/wooden.png" id="17_2q36b"]
 [ext_resource type="Script" path="res://scenes/PortalToHome.gd" id="17_w15gs"]
 [ext_resource type="Texture2D" uid="uid://uksulftnugw4" path="res://sprites/tilesets/floors/flooring.png" id="18_hus3x"]
+[ext_resource type="FontFile" uid="uid://bt2qgdlcvnhlx" path="res://UI/BoneyardBrawl-rgBdy.ttf" id="19_81vve"]
 [ext_resource type="PackedScene" uid="uid://h80n4mbesiy6" path="res://scenes/player.tscn" id="19_i34oj"]
 [ext_resource type="PackedScene" uid="uid://bvmxlem0gfsp6" path="res://enemy.tscn" id="20_waj8o"]
 [ext_resource type="Texture2D" uid="uid://10ptdddshelw" path="res://sprites/characters/pdTP5o.png" id="22_s3kbp"]
@@ -36,15 +38,50 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 5, 7, 8.5, 12, 15.8, 20.9, 21.8, 25.6, 30, 35.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.1, 5, 7, 8.5, 12, 15.8, 16.2, 26, 30.5, 35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-132, 107), Vector2(218, 145), Vector2(-216, 129), Vector2(-111, 77), Vector2(-111, 77), Vector2(191, 77), Vector2(-13, 77), Vector2(-24, -18), Vector2(-24, -18), Vector2(198, -18), Vector2(198, -18)]
+"values": [Vector2(-132, 107), Vector2(218, 145), Vector2(-216, 129), Vector2(-111, 77), Vector2(-111, 77), Vector2(191, 77), Vector2(191, -24), Vector2(-30, -17), Vector2(-104, -17), Vector2(-104, -17)]
+}
+
+[sub_resource type="Animation" id="Animation_7xlip"]
+resource_name = "skeleKid walk cycle"
+length = 40.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.7, 11.1, 11.7, 16.3, 19, 24.7, 26.3, 33.7, 39),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-53, -18), Vector2(178, -19), Vector2(182, 81), Vector2(33, 81.0001), Vector2(33, 81.0001), Vector2(105, 81.0001), Vector2(105, 81.0001), Vector2(-153, 88.0001), Vector2(30, 143)]
+}
+
+[sub_resource type="Animation" id="Animation_22lv0"]
+resource_name = "skeleKid 2 walk cycle"
+length = 40.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 5.2, 14.5, 15.6, 19.6, 20.3, 25.1, 26.2, 30.4, 31.1, 36.3, 39),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-43, 81), Vector2(-43, 81), Vector2(115, 81), Vector2(115, 81), Vector2(184, 79), Vector2(172, -17), Vector2(98, -14), Vector2(98, -14), Vector2(-74, -16), Vector2(-74, -16), Vector2(153, -16), Vector2(153, -16)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lvwot"]
 _data = {
-"skeleDog walk cycle": SubResource("Animation_r6irv")
+"skeleDog walk cycle": SubResource("Animation_r6irv"),
+"skeleKid 2 walk cycle": SubResource("Animation_22lv0"),
+"skeleKid walk cycle": SubResource("Animation_7xlip")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h7wdv"]
@@ -56,6 +93,10 @@ size = Vector2(99.571, 55.7996)
 size = Vector2(12.361, 10.3023)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7w1ke"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_52qje"]
+radius = 77.2653
+height = 319.24
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pnski"]
 texture = ExtResource("14_nuoot")
@@ -843,10 +884,6 @@ physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_blesv")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_52qje"]
-radius = 77.2653
-height = 319.24
-
 [sub_resource type="LabelSettings" id="LabelSettings_r62md"]
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
@@ -990,7 +1027,7 @@ skew = 0.00869358
 texture = ExtResource("6_l7q2r")
 
 [node name="Skeledog" type="Sprite2D" parent="Scale/ScalePlateRight/House"]
-position = Vector2(198, -18)
+position = Vector2(-104, -17)
 scale = Vector2(0.0289355, 0.0275833)
 texture = ExtResource("7_br60w")
 
@@ -999,6 +1036,26 @@ libraries = {
 "": SubResource("AnimationLibrary_lvwot")
 }
 speed_scale = 0.5
+
+[node name="Skelekid" type="Sprite2D" parent="Scale/ScalePlateRight/House"]
+position = Vector2(-53, -18)
+scale = Vector2(0.16499, 0.160661)
+texture = ExtResource("8_4m7p8")
+
+[node name="animSkeleKid" type="AnimationPlayer" parent="Scale/ScalePlateRight/House/Skelekid"]
+libraries = {
+"": SubResource("AnimationLibrary_lvwot")
+}
+
+[node name="Skelekid2" type="Sprite2D" parent="Scale/ScalePlateRight/House"]
+position = Vector2(-132, 107)
+scale = Vector2(0.16499, 0.160661)
+texture = ExtResource("8_4m7p8")
+
+[node name="animSkeleKid2" type="AnimationPlayer" parent="Scale/ScalePlateRight/House/Skelekid2"]
+libraries = {
+"": SubResource("AnimationLibrary_lvwot")
+}
 
 [node name="quest_omelette" type="Control" parent="Scale/ScalePlateRight/House"]
 layout_mode = 3
@@ -1084,6 +1141,21 @@ position = Vector2(-2.51699, 19.1246)
 scale = Vector2(0.058, 0.104)
 texture = ExtResource("3_nbwq7")
 
+[node name="PortalToHome" type="Sprite2D" parent="Scale/ScalePlateLeft"]
+position = Vector2(74.8807, 69.1862)
+scale = Vector2(0.0850031, 0.15197)
+texture = ExtResource("22_s3kbp")
+script = ExtResource("17_w15gs")
+
+[node name="Area2D" type="Area2D" parent="Scale/ScalePlateLeft/PortalToHome"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("23_nyvb8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scale/ScalePlateLeft/PortalToHome/Area2D" groups=["Portal"]]
+shape = SubResource("CapsuleShape2D_52qje")
+disabled = true
+
 [node name="quest_cryptDefense" type="Control" parent="Scale/ScalePlateLeft"]
 layout_mode = 3
 anchors_preset = 0
@@ -1120,21 +1192,6 @@ tile_set = SubResource("TileSet_1wkj4")
 format = 2
 layer_0/tile_data = PackedInt32Array(-131080, 0, 0, -65544, 0, 1, -8, 0, 2, -131079, 65536, 0, -65543, 65536, 1, -7, 65536, 2, -131078, 131072, 0, -65542, 131072, 1, -6, 131072, 2, -327688, 0, 0, -262152, 0, 1, -196616, 0, 2, -327687, 65536, 0, -262151, 65536, 1, -196615, 65536, 2, -327686, 131072, 0, -262150, 131072, 1, -196614, 131072, 2, -196580, 0, 0, -131044, 0, 1, -65508, 0, 2, -196579, 65536, 0, -131043, 65536, 1, -65507, 65536, 2, -196578, 131072, 0, -131042, 131072, 1, -65506, 131072, 2, -393188, 0, 0, -327652, 0, 1, -262116, 0, 2, -393187, 65536, 0, -327651, 65536, 1, -262115, 65536, 2, -393186, 131072, 0, -327650, 131072, 1, -262114, 131072, 2)
 
-[node name="PortalToHome" type="Sprite2D" parent="Scale/ScalePlateLeft/quest_cryptDefense"]
-position = Vector2(7.23637, -14.0622)
-scale = Vector2(0.0850031, 0.15197)
-texture = ExtResource("22_s3kbp")
-script = ExtResource("17_w15gs")
-
-[node name="Area2D" type="Area2D" parent="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome"]
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("23_nyvb8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" groups=["Portal"]]
-shape = SubResource("CapsuleShape2D_52qje")
-disabled = true
-
 [node name="SummoningTimer2" type="Timer" parent="Scale/ScalePlateLeft/quest_cryptDefense"]
 wait_time = 16.0
 
@@ -1162,6 +1219,16 @@ visible_characters = 13
 libraries = {
 "": SubResource("AnimationLibrary_pr0dm")
 }
+
+[node name="txtYourHealth" type="RichTextLabel" parent="Scale"]
+offset_left = -153.0
+offset_top = 314.0
+offset_right = 162.0
+offset_bottom = 346.0
+theme_override_fonts/normal_font = ExtResource("19_81vve")
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "[center]Your Health: 100%[/center]"
 
 [node name="Control" type="Control" parent="Scale"]
 layout_mode = 3
@@ -1275,9 +1342,9 @@ offset_bottom = 40.0
 [connection signal="body_entered" from="Scale/ScalePlateRight/Node2D/FirstFloorToSecond/FirstFloor" to="Scale/ScalePlateRight/Node2D/playerHome" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Scale/ScalePlateRight/Node2D/FirstFloorToSecond/FirstFloor" to="Scale/ScalePlateRight/Node2D/playerHome" method="_on_first_floor_body_entered"]
 [connection signal="body_entered" from="Scale/ScalePlateRight/Node2D/Basement/Area2D" to="Scale/ScalePlateRight/Node2D/playerHome" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" to="Scale/ScalePlateLeft/quest_cryptDefense/playerWork" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" to="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" method="_on_body_entered"]
-[connection signal="body_exited" from="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" to="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" method="_on_body_exited"]
+[connection signal="body_entered" from="Scale/ScalePlateLeft/PortalToHome/Area2D" to="Scale/ScalePlateLeft/PortalToHome/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Scale/ScalePlateLeft/PortalToHome/Area2D" to="Scale/ScalePlateLeft/quest_cryptDefense/playerWork" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Scale/ScalePlateLeft/PortalToHome/Area2D" to="Scale/ScalePlateLeft/PortalToHome/Area2D" method="_on_body_exited"]
 [connection signal="timeout" from="Scale/ScalePlateLeft/quest_cryptDefense/SummoningTimer2" to="Scale/ScalePlateLeft/quest_cryptDefense/playerWork" method="_on_summoning_timer_timeout"]
 [connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_btn_main_menu_pressed"]
 [connection signal="pressed" from="Scale/Control/btnMainMenu" to="." method="_on_button_pressed"]

@@ -76,8 +76,8 @@ func _process(delta):
 	if curPercentProgress > 100:
 		curPercentProgress = 100
 		
-	print("curPercentProgress: ", curPercentProgress, " (override is: ", progressPercentOverride, ")")
-	print("timeTotalProgressRequired: ", timeTotalProgressRequired)
+	#print("curPercentProgress: ", curPercentProgress, " (override is: ", progressPercentOverride, ")")
+	#print("timeTotalProgressRequired: ", timeTotalProgressRequired)
 	$txtProgress.text = "[center]%s%%[/center]" % curPercentProgress
 	
 	if(curPercentProgress >= 100):

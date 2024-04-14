@@ -6,6 +6,7 @@ var player_dodge_cooldown = true
 var health = 100
 var totalHealth = 100
 var player_alive = true
+var enemyAttackDamage = 15
 
 var attack_ip = false
 var dodge_ip = false
@@ -68,7 +69,7 @@ func player_movement(_delta):
 		velocity.y = 0
 		
 	if position.x >= 84:
-			position.x = 84
+		position.x = 84
 	
 	if position.x <= -31 and position.y <=3:
 		position.x = -31
@@ -172,11 +173,12 @@ func _on_player_hitbox_body_exited(body):
 func enemy_attack():
 	var anim = $AnimatedSprite2D
 	var dir = current_dir
-	if enemy_inattack_range and enemy_attack_cooldown == true and global.player_dodge == false:
-		health = health - 1
+	if global.isWorkActive and enemy_inattack_range and enemy_attack_cooldown == true and global.player_dodge == false:
+		health = health - enemyAttackDamage
 		enemy_attack_cooldown = false
 		$attack_cooldown.start()
 		print("skeleton health = ", health, " out of ", totalHealth)
+		global.SetPlayerHealthDisplay(float(health) / totalHealth * 100)
 	elif Input.is_action_just_pressed("dodge") and global.player_dodge == false:
 		if dir == "right":
 			$AnimatedSprite2D.flip_h = false

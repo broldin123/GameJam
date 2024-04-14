@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://bvmxlem0gfsp6"]
+[gd_scene load_steps=30 format=3 uid="uid://bvmxlem0gfsp6"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_586o6"]
 [ext_resource type="Texture2D" uid="uid://dnmj0rd8jnpo3" path="res://sprites/characters/dcdm8qc-85787558-abc9-4fde-8951-ccc55d926ed3.png" id="3_egy2l"]
 [ext_resource type="Texture2D" uid="uid://dpg8boy2byjf2" path="res://sprites/characters/player.png" id="3_ff5ns"]
 [ext_resource type="Texture2D" uid="uid://10ptdddshelw" path="res://sprites/characters/pdTP5o.png" id="4_2vcuy"]
+[ext_resource type="FontFile" uid="uid://bt2qgdlcvnhlx" path="res://UI/BoneyardBrawl-rgBdy.ttf" id="4_an3qy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x76wr"]
 atlas = ExtResource("3_ff5ns")
@@ -224,23 +225,28 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Label2" type="Label" parent="."]
-offset_left = -4.0
-offset_top = -108.0
-offset_right = 36.0
-offset_bottom = -85.0
+offset_left = -33.6667
+offset_top = -38.0
+offset_right = 77.3333
+offset_bottom = -15.0
+theme_override_fonts/font = ExtResource("4_an3qy")
+text = "Summoning: 4"
 visible_characters = 13
 
 [node name="SummoningTimer2" type="Timer" parent="."]
 wait_time = 16.0
 
-[node name="PortalToHome2" type="Sprite2D" parent="."]
+[node name="PortalToHome2  (Unused)" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(46.3333, -3.66667)
 scale = Vector2(0.130951, 0.131198)
 texture = ExtResource("4_2vcuy")
 
-[node name="Area2D" type="Area2D" parent="PortalToHome2"]
+[node name="Area2D" type="Area2D" parent="PortalToHome2  (Unused)"]
+visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PortalToHome2/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PortalToHome2  (Unused)/Area2D"]
+visible = false
 scale = Vector2(7.81591, -4.25078)
 shape = SubResource("CapsuleShape2D_ejnpk")
 
