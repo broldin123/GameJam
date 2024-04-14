@@ -13,6 +13,8 @@ var basementHome = 87
 var firstFloor = 50
 var secondFloor = -2.5
 var firstFloorXLeft = -25
+var secondFloorXRight = 52
+var firstFloorXRight = 57
 
 var player_dodge = false
 
@@ -204,12 +206,14 @@ func _on_area_2d_body_entered(_body):
 	
 
 func _on_first_floor_body_entered(body):
-	self.position.y = firstFloor
+	self.position.y = secondFloor
+	self.position.x = secondFloorXRight
 	print(int(self.position.y), "going from first floor to second")
 
 
 func _on_second_floor_body_entered(body):
-	self.position.y = secondFloor
+	self.position.y = firstFloor
+	self.position.x = firstFloorXRight
 	print(int(self.position.y), "going from second floor to first")
 
 func _process(_delta):
