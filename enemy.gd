@@ -13,7 +13,7 @@ func _physics_process(_delta):
 	deal_with_damage()
 	
 	if player_chase:
-		position += (player.position - position)/speed
+		position.x += (player.position.x + 3 - position.x)/speed
 		
 		if position.x >= 69:
 			position.x = 69

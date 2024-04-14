@@ -70,8 +70,9 @@ func player_movement(_delta):
 	if position.x >= 87:
 			position.x = 87
 	
-	#if position.y == secondFloor and position.x == -38:
-	#	position.x = -38
+	if position.x <= -31 and position.y <=3:
+		position.x = -31
+		position.y = 2
 	if position.x <=-67:
 			position.x = -67
 	if Input.is_action_pressed("ui_right"):
@@ -249,8 +250,8 @@ func _on_second_floor_body_entered(body):
 	print(int(self.position.y), "going from second floor to first")
 
 func _process(_delta):
-	#print(int(self.position.y), "is your current y position!")
-	#print(int(self.position.x), "is your current x position!")
+	print(int(self.position.y), "is your current y position!")
+	print(int(self.position.x), "is your current x position!")
 	return
 
 
