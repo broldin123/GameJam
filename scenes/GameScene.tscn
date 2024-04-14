@@ -53,7 +53,7 @@ size = Vector2(99.571, 55.7996)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c4nck"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1pkdc"]
-size = Vector2(12.361, 20)
+size = Vector2(12.361, 10.3023)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7w1ke"]
 
@@ -1007,6 +1007,7 @@ position = Vector2(-47.6449, 87.1282)
 scale = Vector2(1.2585, 2.24996)
 
 [node name="FirstFloorToBasement" type="Sprite2D" parent="Scale/ScalePlateRight/Node2D"]
+visible = false
 position = Vector2(-49.1114, 21.9688)
 scale = Vector2(0.129875, 0.129875)
 texture = ExtResource("22_s3kbp")
@@ -1021,6 +1022,7 @@ position = Vector2(39.7849, 39.2377)
 shape = SubResource("RectangleShape2D_h7wdv")
 
 [node name="SecondFloor" type="Sprite2D" parent="Scale/ScalePlateRight/Node2D"]
+visible = false
 position = Vector2(83.33, -20.4283)
 scale = Vector2(0.129875, 0.129875)
 texture = ExtResource("22_s3kbp")
@@ -1035,6 +1037,7 @@ scale = Vector2(9.3861, 6.21119)
 shape = SubResource("RectangleShape2D_c4nck")
 
 [node name="FirstFloorToSecond" type="Sprite2D" parent="Scale/ScalePlateRight/Node2D"]
+visible = false
 position = Vector2(80.9535, 32.8922)
 scale = Vector2(0.129875, 0.129875)
 texture = ExtResource("22_s3kbp")
@@ -1044,12 +1047,13 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scale/ScalePlateRight/Node2D/FirstFloorToSecond/FirstFloor"]
-position = Vector2(46.8215, 0)
-rotation = 3.14159
+position = Vector2(46.8218, -52.1344)
+rotation = -3.14159
 scale = Vector2(12.2587, -10.7519)
 shape = SubResource("RectangleShape2D_1pkdc")
 
 [node name="Basement" type="Sprite2D" parent="Scale/ScalePlateRight/Node2D"]
+visible = false
 position = Vector2(-75.1204, 70.9985)
 scale = Vector2(0.129875, 0.129875)
 texture = ExtResource("22_s3kbp")
@@ -1091,9 +1095,8 @@ position = Vector2(-47.5083, -51.6084)
 scale = Vector2(1.2585, 2.24996)
 
 [node name="enemy" parent="Scale/ScalePlateLeft/quest_cryptDefense" instance=ExtResource("20_waj8o")]
-visible = false
 position = Vector2(78.3415, -51.6084)
-scale = Vector2(0.943874, 1.68747)
+scale = Vector2(0.931544, 1.70648)
 
 [node name="Ezgif-5-8Dd9f9d424" type="Sprite2D" parent="Scale/ScalePlateLeft/quest_cryptDefense"]
 position = Vector2(7.55099, -196.168)
@@ -1120,6 +1123,7 @@ script = ExtResource("23_nyvb8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scale/ScalePlateLeft/quest_cryptDefense/PortalToHome/Area2D" groups=["Portal"]]
 shape = SubResource("CapsuleShape2D_52qje")
+disabled = true
 
 [node name="animScaleUpDown" type="AnimationPlayer" parent="Scale"]
 libraries = {
