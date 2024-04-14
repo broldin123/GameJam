@@ -1,6 +1,15 @@
 ~ start
-Patella: Oh no! My husband are you okay?
-- Yes I will be okay, I was wounded but I will recover my love.
-- What does it look like? I've got no skin!
+Patella: Oh no, honey, life got you down? 
+- Yes, it was a long day.
+- I don't know if I can keep going at this rate.
+Patella: If there's anyone who can get up, it's you, dear.
+- My bones are cracking. I just don't know if I can keep everything going.
+- I feel like I'm failing at everything.
+Patella: I believe in you.
+- Maybe my job would be better without me. I'm getting older and brittle.
+- The house is just so much and I feel like I'm not doing enough.
+Patella: Look at me, dear.
+Patella: Sometimes just showing up is enough.
+- (Go another day)
 set global.shouldBringToEndScene = true
 => END

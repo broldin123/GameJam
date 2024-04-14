@@ -1,11 +1,11 @@
 ~ start
 Patella: Good morning honey bones, rise and shine.
-- Morning wifey
-- Errr, I think I need some more sleep!
-Patella: It means alot to me that you've offered to fully take care of the kids today. I know you've been getting summoned to work constantly. (Click to continue)
-Patella: But I'm sure you'll do just fine, and I'll enjoy my spa day! I'm off now, toodle-loo! 
-- Have a wonderful spa day my love, I'm sure I can handle those two youngsters
+- Tella... it's so wonderful to see you.
+- You look as beautiful as the day you died.
+Patella: I know it's probably been difficult for you between work and the kids. (Click to continue)
+Patella: But know I'm rooting for you. Always.
+- You deserve to rest, Patella... I'll make it work.
 	set global.wifeChatFinished = true
-- Um... okay I'm really not sure I'm ready for this. My boss keeps asking me to stay late.
+- Hopefully work isn't too rough today. There's been a surge of adventurers recently.
 	set global.wifeChatFinished = true
 => END
