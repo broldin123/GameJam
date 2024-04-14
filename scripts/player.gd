@@ -25,9 +25,12 @@ var stayAliveTenSecondsQuest = null
 # Setup function
 func _ready():
 	$AnimatedSprite2D.play("side_idle")
-	MyGlobals.player = get_tree().get_root()
-	$"../../../ScalePlateLeft/quest_cryptDefense/playerWork".set_process(false)
-	$"../../../ScalePlateLeft/quest_cryptDefense/playerWork".visible = false
+	var isWorkPlayer = self == $"../../../ScalePlateLeft/quest_cryptDefense/playerWork"
+	print("Spawned player, IsWorkPlayer: ", isWorkPlayer)
+	if isWorkPlayer:
+		global.workPlayer = self
+	else:
+		global.homePlayer = self
 
 func _physics_process(delta):
 	player_movement(delta)
@@ -47,9 +50,9 @@ func spawn_player_lose_quest(_delta):
 	#if(stayAliveTenSecondsQuest != null):
 	#		
 	#stayAliveTenSecondsQuest = questPrefab.instantiate()
-	#print("poop %s spawned!" % MyGlobals.poopNum)
-	#newProgressMeter._setup("Clean Poop %s" % MyGlobals.poopNum, 2, 10)
-	#MyGlobals.poopNum += 1
+	#print("poop %s spawned!" % global.poopNum)
+	#newProgressMeter._setup("Clean Poop %s" % global.poopNum, 2, 10)
+	#global.poopNum += 1
 	#$Scale/ScalePlateRight/House/Skeledog.get_parent().add_child(newProgressMeter)
 	#newProgressMeter.global_position = $Scale/ScalePlateRight/House/Skeledog.global_position
 	# = 
@@ -230,8 +233,9 @@ func _on_second_floor_body_entered(body):
 	print(int(self.position.y), "going from second floor to first")
 
 func _process(_delta):
-	print(int(self.position.y), "is your current y position!")
-	print(int(self.position.x), "is your current x position!")
+	#print(int(self.position.y), "is your current y position!")
+	#print(int(self.position.x), "is your current x position!")
+	return
 
 
 func _on_first_floor_to_basement_body_entered(body):

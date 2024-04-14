@@ -18,6 +18,8 @@ var isActive = false
 
 var allowProgress = false
 
+var maxDistToProgress = 70
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#_setup("Do it!", 3, 2)
@@ -36,10 +38,20 @@ func _setup(title_, progressTimeReq_, timeLimit_):
 	$txtTitle.text = "[center]%s[/center]" % title_
 	pass
 
+func UpdateIsProgressable():
+	var myPos = self.global_position
+	var distToPlayer = myPos.distance_to(global.homePlayer.global_position)
+	#print("CurDistToPlayer: ", distToPlayer)
+	allowProgress = distToPlayer < maxDistToProgress
+	$imgProgressInRange.visible = allowProgress
+	$imgProgress.visible = !allowProgress
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if( !isActive ):
 		return
+		
+	UpdateIsProgressable()
 		
 	if Input.is_action_pressed("progressQuest") && allowProgress:
 		timeProgressed += delta
@@ -58,7 +70,7 @@ func _process(delta):
 		$txtTitle.text = ""
 		$txtProgress.text = ""
 		$txtTimeLeft.text = "[center]Completed: %s[/center]" % questTitle
-		MyGlobals.questResults.append( "Completed: %s" % questTitle )
+		global.questResults.append( "Completed: %s" % questTitle )
 		$imgFail.visible = false
 		$imgProgress.visible = false
 		$imgSuccess.visible = true
@@ -71,7 +83,7 @@ func _process(delta):
 		$txtTitle.text = ""
 		$txtProgress.text = ""
 		$txtTimeLeft.text = "[center]Failed: %s[/center]" % questTitle
-		MyGlobals.questResults.append( "Failed: %s" % questTitle )
+		global.questResults.append( "Failed: %s" % questTitle )
 		$imgFail.visible = true
 		$imgProgress.visible = false
 		$imgSuccess.visible = false
@@ -79,20 +91,26 @@ func _process(delta):
 		await get_tree().create_timer(3).timeout
 		$".".queue_free()
 
+
+
+
+'''
 func is_on_player(body):
 	var node = body
 	while node != null:
-		if node == MyGlobals.player:
+		if node == global.player:
 			return true
 		node = node.get_parent()
 	return false
 
+
 func _on_area_2d_body_entered(body):
 	if( !isActive ):
+		print("_on_area_2d_body_entered early exit.")
 		return
 		
-	var isPlayer = is_on_player(body)
-	print("Collision ENTER. IsPlayer: %s" % isPlayer)
+	var isHomePlayer = body == global.homePlayer
+	print("Collision ENTER. IsPlayer: %s" % isHomePlayer)
 	allowProgress = true
 	$imgProgressInRange.visible = true
 	$imgProgress.visible = false
@@ -101,6 +119,7 @@ func _on_area_2d_body_entered(body):
 
 func _on_area_2d_body_exited(body):
 	if( !isActive ):
+		print("_on_area_2d_body_exited early exit.")
 		return
 		
 	print("Collision EXIT.")
@@ -108,3 +127,4 @@ func _on_area_2d_body_exited(body):
 	$imgProgressInRange.visible = false
 	$imgProgress.visible = true
 	pass # Replace with function body.
+'''

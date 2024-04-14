@@ -13,10 +13,11 @@ func _ready():
 	$txtResultsInfo.text = completedQuestsString + failedQuestsString + totals + score
 
 func collateQuests():
+	print("Printing Quests: ", global.questResults)
 	var completedQuests := []
 	var failedQuests := []
 	# Iterate through the list of quest strings
-	for quest_str in questList:
+	for quest_str in global.questResults:
 		if quest_str.find("Completed:") != -1:
 			# Extract the quest name and append it to completedQuests
 			var quest_name = quest_str.replace("Completed: ", "")

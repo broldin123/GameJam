@@ -4,16 +4,13 @@ extends Node2D
 func _ready():
 	$Control/Info.visible = false
 	$Control/MainMenu.visible = true
+	global.OnSceneLoaded("TitleScene")
 	
-	
-
 func _on_btn_play_pressed():
 	get_tree().change_scene_to_file("res://scenes/GameScene.tscn")
 
-
 func _on_btn_quit_pressed():
 	get_tree().quit()
-
 
 func _on_btn_back_pressed():
 	$Control/Info.visible = false
